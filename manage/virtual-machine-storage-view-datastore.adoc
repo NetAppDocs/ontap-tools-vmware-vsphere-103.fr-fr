@@ -1,0 +1,26 @@
+---
+permalink: manage/virtual-machine-storage-view-datastore.html 
+sidebar: sidebar 
+keywords: Remove vVol datastore 
+summary: La vue stockage affiche la liste des vVols créés par la machine virtuelle. 
+---
+= Vue du stockage des machines virtuelles
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La vue stockage affiche la liste des vVols créés par la machine virtuelle.
+
+
+NOTE: Cette vue s'applique à la machine virtuelle sur laquelle au moins un disque associé aux outils ONTAP pour le datastore VMware vSphere Managed vVols est monté.
+
+.Étapes
+. À partir du client vSphere, accédez à la machine virtuelle.
+. Sélectionnez l'onglet *Monitor* dans le volet de droite.
+. Sélectionnez *NetApp ONTAP Tools* > *Storage*. Les détails *Storage* apparaissent dans le volet de droite. Vous pouvez voir la liste des vVols présents sur la machine virtuelle.
++
+Vous pouvez utiliser l'option « gérer les colonnes » pour masquer ou afficher différentes colonnes.
+
+

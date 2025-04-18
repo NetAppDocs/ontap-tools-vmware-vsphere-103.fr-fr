@@ -1,0 +1,28 @@
+---
+permalink: manage/migrate-standard-virtual-machines-to-vvols-datastores.html 
+sidebar: sidebar 
+keywords: Migrate NFS and VMFS virtual machines 
+summary: 'Vous pouvez migrer des machines virtuelles des datastores NFS et VMFS vers des datastores Virtual volumes \(vVols\) pour tirer parti de la gestion des machines virtuelles basée sur des règles et d"autres fonctionnalités vVols. Les datastores vVols vous permettent de répondre aux exigences accrues en matière de workloads.' 
+---
+= Migrez les machines virtuelles avec les datastores NFS et VMFS vers les datastores vVols
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez migrer des machines virtuelles des datastores NFS et VMFS vers des datastores Virtual volumes (vVols) pour tirer parti de la gestion des machines virtuelles basée sur des règles et d'autres fonctionnalités vVols. Les datastores vVols vous permettent de répondre aux exigences accrues en matière de workloads.
+
+.Avant de commencer
+Assurez-vous que VASA Provider ne s'exécute sur aucune des machines virtuelles que vous prévoyez de migrer. Si vous migrez une machine virtuelle qui exécute VASA Provider dans un datastore vvols, vous ne pouvez pas effectuer d'opérations de gestion, y compris la mise sous tension des machines virtuelles qui se trouvent sur des datastores vvols.
+
+*À propos de cette tâche*
+
+Lorsque vous migrez d'un datastore NFS et VMFS vers un datastore vVols, vCenter Server utilise les API vStorage APIs for Array Integration (VAAI) pour décharger les données lors du déplacement de datastores VMFS, mais pas à partir d'un fichier VMDK NFS. VAAI réduit généralement la charge sur l'hôte.
+
+.Étapes
+. Cliquez avec le bouton droit de la souris sur la machine virtuelle à migrer et sélectionnez *migrer*.
+. Sélectionnez *changer stockage uniquement*, puis *Suivant*.
+. Sélectionnez un format de disque virtuel, une stratégie de stockage VM et un datastore vVol correspondant aux fonctionnalités du datastore que vous migrez.
+. Vérifiez les paramètres et sélectionnez *Terminer*.
+

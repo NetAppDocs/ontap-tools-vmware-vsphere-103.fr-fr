@@ -1,0 +1,18 @@
+---
+permalink: concepts/autosupport.html 
+sidebar: sidebar 
+keywords:  
+summary: 'AutoSupport est un mécanisme qui surveille de manière proactive l"état de votre système et envoie automatiquement des messages au support technique NetApp, à votre organisation de support interne et à un partenaire de support.' 
+---
+= AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AutoSupport est un mécanisme qui surveille de manière proactive l'état de votre système et envoie automatiquement des messages au support technique NetApp, à votre organisation de support interne et à un partenaire de support.
+
+L'option AutoSupport est activée par défaut lorsque vous configurez votre système de stockage pour la première fois. L'AutoSupport envoie des messages au support technique sous 24 heures après l'activation de AutoSupport.
+
+Vous pouvez désactiver AutoSupport à l'aide de l'option *Configuration de l'application* > *Désactiver AutoSupport* de la console de maintenance. Il est recommandé de le laisser activé. L'activation de AutoSupport accélère la détection des problèmes et accélère la résolution des problèmes. Le système collecte les informations AutoSupport et les stocke localement, même lorsque le AutoSupport est désactivé. Cependant, il n'envoie pas le rapport à aucun réseau. Vous devez fournir l'url du proxy à l'aide de la console de maintenance de la première machine virtuelle. Utilisez l'option *Configuration de l'application* > *mettre à jour l'URL du proxy AutoSupport* pour entrer l'URL du proxy.

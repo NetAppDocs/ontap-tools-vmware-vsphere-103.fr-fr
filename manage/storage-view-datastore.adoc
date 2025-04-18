@@ -1,0 +1,35 @@
+---
+permalink: manage/storage-view-datastore.html 
+sidebar: sidebar 
+keywords: Remove vVol datastore 
+summary: 'La vue du stockage ONTAP sous l"onglet Configure d"un outil ONTAP pour VMware vSphere fournit les données relatives au datastore et à son volume.' 
+---
+= Vues de stockage ONTAP pour les datastores
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les outils ONTAP pour VMware vSphere affichent la vue côté stockage ONTAP des datastores et de leurs volumes dans l'onglet configurer.
+
+.Étapes
+. Depuis le client vSphere, accédez au datastore.
+. Sélectionnez l'onglet *configurer* dans le volet de droite.
+. Sélectionnez *Outils NetApp ONTAP* > *stockage ONTAP*. Selon le type de datastore, la vue change. Reportez-vous au tableau ci-dessous pour plus d'informations :
+
+
+|===
+
+
+| *Type de datastore* | *Information disponible* 
+
+
+| Datastore NFS | La page *Détails du stockage* contient des informations sur les systèmes back-end de stockage, les agrégats et les volumes. La page de détails NFS contient des données relatives au datastore NFS. 
+
+
+| Datastores VMFS | La page *Storage details* contient des informations sur le back-end de stockage, l'agrégat et le volume. La page *LUN details* contient des données relatives à la LUN. La page *Namespace details* contient des données relatives à l'espace de noms lorsque le datastore VMFS utilise le protocole NVMe/TCP ou NVMe/FC. Les détails des volumes et des agrégats ne sont pas affichés pour les datastores basés sur le système de stockage ASA r2. 
+
+
+| Datastores vVols | Répertorie tous les volumes. Vous pouvez développer ou supprimer du stockage à partir du volet de stockage ONTAP. Cette vue n'est pas prise en charge pour le datastore vVols système ASA r2. 
+|===

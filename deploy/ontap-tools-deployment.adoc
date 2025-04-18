@@ -1,0 +1,106 @@
+---
+permalink: deploy/ontap-tools-deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Les outils ONTAP pour l"appliance VMware vSphere sont déployés sous forme de nœud unique de petite taille avec des services de base pour prendre en charge les datastores NFS et VMFS.' 
+---
+= Déployez les outils ONTAP pour VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les outils ONTAP pour l'appliance VMware vSphere sont déployés sous forme de nœud unique de petite taille avec des services de base pour prendre en charge les datastores NFS et VMFS.
+
+*Avant de commencer*
+
+Une bibliothèque de contenu dans VMware est un objet conteneur qui stocke les modèles de machine virtuelle, les modèles vApp et d'autres types de fichiers. Le déploiement avec la bibliothèque de contenu vous offre une expérience transparente car il ne dépend pas de la connectivité réseau.
+
+
+NOTE: Vous devez stocker la bibliothèque de contenu sur un datastore partagé afin que tous les hôtes d'un cluster puissent y accéder. Créez une bibliothèque de contenu pour stocker l'OVA avant de configurer l'appliance en configuration haute disponibilité. Ne supprimez pas le modèle de bibliothèque de contenu après le déploiement.
+
+
+NOTE: Pour activer le déploiement de la haute disponibilité ultérieurement, ne déployez pas la machine virtuelle hébergeant les outils ONTAP directement sur un hôte VMware ESXi. Déployez-la plutôt sur un cluster ou un pool de ressources.
+
+Si vous ne disposez pas d'une bibliothèque de contenu, procédez comme suit pour en créer une :
+
+*Créer une bibliothèque de contenu* dans vous prévoyez d'utiliser uniquement un déploiement à un seul nœud, la création d'une bibliothèque de contenu n'est pas nécessaire.
+
+. Téléchargez le `.zip` fichier contenant les binaires (_.ova_) et les certificats signés pour les outils ONTAP pour VMware vSphere à partir du https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["Site de support NetApp"^].
+. Connectez-vous au client vSphere
+. Sélectionnez le menu du client vSphere et sélectionnez *bibliothèques de contenu*.
+. Sélectionnez *Créer* à droite de la page.
+. Indiquez un nom pour la bibliothèque et créez la bibliothèque de contenu.
+. Accédez à la bibliothèque de contenu que vous avez créée.
+. Sélectionnez *actions* à droite de la page et sélectionnez *Importer élément* et importez le fichier OVA.
+
+
+
+NOTE: Pour plus d'informations, consultez https://blogs.vmware.com/vsphere/2020/01/creating-and-using-content-library.html["Création et utilisation de la bibliothèque de contenu"] le blog.
+
+
+NOTE: Avant de procéder au déploiement, définissez le DRS (Distributed Resource Scheduler) du cluster sur l'inventaire sur « conservateur ». Cela permet de s'assurer que les machines virtuelles ne sont pas migrées lors de l'installation.
+
+Les outils ONTAP pour VMware vSphere sont initialement déployés sous forme de configuration non HA. Pour évoluer vers le déploiement haute disponibilité, vous devez activer le plug-in CPU hot plug et mémoire hot plug. Vous pouvez effectuer cette étape dans le cadre du processus de déploiement ou modifier les paramètres de la machine virtuelle après le déploiement.
+
+.Étapes
+. Téléchargez le `.zip` fichier contenant les binaires (_.ova_) et les certificats signés pour les outils ONTAP pour VMware vSphere à partir du https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["Site de support NetApp"^]. Si vous avez importé l'OVA dans la bibliothèque de contenu, vous pouvez ignorer cette étape et passer à l'étape suivante.
+. Connectez-vous au serveur vSphere.
+. Accédez au pool de ressources, au cluster ou à l'hôte où vous avez l'intention de déployer l'OVA.
++
+
+NOTE: Ne stockez jamais d'outils ONTAP pour la machine virtuelle VMware vSphere sur les datastores vVols qu'il gère.
+
+. Vous pouvez déployer l'OVA à partir de la bibliothèque de contenu ou du système local.
++
+|===
+
+
+| À partir du système local | À partir de la bibliothèque de contenu 
+
+
+| a. cliquez avec le bouton droit de la souris et sélectionnez *déployer le modèle OVF...*. b. Choisissez le fichier OVA à partir de l'URL ou naviguez jusqu'à son emplacement, puis sélectionnez *Suivant*. | a. accédez à votre bibliothèque de contenu et sélectionnez l'élément de bibliothèque que vous souhaitez déployer. b. sélectionnez *actions* > *Nouveau VM à partir de ce modèle* 
+|===
+. Dans le champ *Sélectionner un nom et un dossier*, entrez le nom de la machine virtuelle et choisissez son emplacement.
++
+** Si vous utilisez la version de vCenter Server 8.0.3, sélectionnez l'option *Personnaliser le matériel de cette machine virtuelle*, qui activera une étape supplémentaire appelée *Personnaliser le matériel* avant de passer à la fenêtre *prêt à terminer*.
+** Si vous utilisez la version de vCenter Server 7.0.3, suivez les étapes de la section *Qu'est-ce qui suit ?* à la fin du déploiement.
+
+
+. Sélectionnez une ressource d'ordinateur et sélectionnez *Suivant*. Si vous le souhaitez, cochez la case *mettre automatiquement sous tension la machine virtuelle déployée*.
+. Passez en revue les détails du modèle et sélectionnez *Suivant*.
+. Lisez et acceptez le contrat de licence et sélectionnez *Suivant*.
+. Sélectionnez le stockage pour la configuration et le format du disque, puis sélectionnez *Suivant*.
+. Sélectionnez le réseau de destination pour chaque réseau source et sélectionnez *Suivant*.
+. Dans la fenêtre *Personnaliser le modèle*, remplissez les champs requis et sélectionnez *Suivant*.
++
+** Les informations sont validées lors de l'installation. En cas de divergence, un message d'erreur s'affiche sur la console Web et vous êtes invité à le corriger.
+** Les noms d'hôte doivent comporter des lettres (A-Z, a-z), des chiffres (0-9) et des tirets (-). Pour configurer la double pile, spécifiez le nom d'hôte mappé sur l'adresse IPv6.
++
+
+NOTE: Le PROTOCOLE IPv6 pur n'est pas pris en charge. Le mode mixte est pris en charge avec un VLAN contenant à la fois des adresses IPv6 et IPv4.
+
+
+
+. Lorsque vous utilisez la version de vCenter Server 8.0.3, dans la fenêtre *Personnaliser le matériel*, activez les options *CPU hot add* et *Memory hot plug* pour permettre la fonctionnalité HA.
+. Consultez les détails dans la fenêtre *prêt à terminer*, sélectionnez *Terminer*.
++
+Au fur et à mesure de la création de la tâche de déploiement, la progression s'affiche dans la barre des tâches vSphere.
+
+. Mettez le serveur virtuel sous tension une fois la tâche terminée.
+
+
+Vous pouvez suivre la progression de l'installation au sein de la console Web de la machine virtuelle.
+
+Si le formulaire OVF contient des incohérences, une boîte de dialogue vous invite à prendre des mesures correctives. Utilisez le bouton Tab pour naviguer, apporter les modifications nécessaires et sélectionner « OK. Vous avez trois tentatives pour résoudre les problèmes. Si les problèmes persistent après trois tentatives, le processus d'installation s'arrête et il est conseillé de réessayer l'installation sur une nouvelle machine virtuelle.
+
+.Et la suite ?
+Si vous avez déployé des outils ONTAP pour VMware vSphere avec vCenter Server 7.0.3, suivez ces étapes après le déploiement.
+
+. Connectez-vous au client vCenter
+. Mettez le nœud ONTAP Tools hors tension.
+. Accédez aux outils ONTAP pour la machine virtuelle VMware vSphere sous *inventaires* et sélectionnez l'option *Modifier les paramètres*.
+. Sous les options *CPU*, cochez la case *Activer l'ajout à chaud de CPU*
+. Sous les options *Memory*, cochez la case *Enable* par rapport à *Memory hot plug*.
+

@@ -1,0 +1,79 @@
+---
+permalink: manage/maintenance-console.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous pouvez gérer les configurations de votre application, de votre système et de votre réseau à l"aide de la console de maintenance des outils ONTAP. Vous pouvez modifier votre mot de passe administrateur et votre mot de passe de maintenance. Vous pouvez également générer des offres de support, définir différents niveaux de journal, afficher et gérer les configurations TLS et démarrer les diagnostics à distance.' 
+---
+= Présentation des outils ONTAP pour la console de maintenance VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez gérer les configurations de votre application, de votre système et de votre réseau à l'aide de la console de maintenance des outils ONTAP. Vous pouvez modifier votre mot de passe administrateur et votre mot de passe de maintenance. Vous pouvez également générer des offres de support, définir différents niveaux de journal, afficher et gérer les configurations TLS et démarrer les diagnostics à distance.
+
+Vous devez avoir installé les outils VMware après avoir déployé les outils ONTAP pour VMware vSphere pour accéder à la console de maintenance. Vous devez utiliser `maint` comme nom d'utilisateur et mot de passe que vous avez configurés pendant le déploiement pour vous connecter à la console de maintenance des outils ONTAP. Vous devez utiliser *nano* pour modifier les fichiers dans la console de maintenance ou de connexion racine.
+
+
+NOTE: Vous devez définir un mot de passe pour l' `diag`utilisateur lors de l'activation des diagnostics à distance.
+
+Vous devez utiliser l'onglet *Summary* de vos outils ONTAP déployés pour VMware vSphere pour accéder à la console de maintenance. Lorsque vous sélectionnez image:../media/launch-maintenance-console.gif["Bouton de lecture"], la console de maintenance démarre.
+
+|===
+
+
+| *Menu Console* | *Options* 
+
+
+ a| 
+Configuration de l'application
+ a| 
+. Afficher le récapitulatif de l'état du serveur
+. Modifier le niveau du JOURNAL pour les services VASA Provider et SRA
+. Désactivez AutoSupport
+. Mettre à jour l'URL du proxy AutoSupport
+
+
+
+
+ a| 
+Configuration du système
+ a| 
+. Redémarrez la machine virtuelle
+. Arrêter la machine virtuelle
+. Modifier le mot de passe utilisateur « familiariser »
+. Modifier le fuseau horaire
+. Ajouter un nouveau serveur NTP
+. Augmentation de la taille des disques de prison (/prison)
+. Mise à niveau
+. Installez VMware Tools
+
+
+
+
+ a| 
+Configuration du réseau
+ a| 
+. Afficher les paramètres d'adresse IP
+. Afficher les paramètres de recherche du nom de domaine
+. Modifier les paramètres de recherche du nom de domaine
+. Afficher les routes statiques
+. Modifier les routes statiques
+. Valider les modifications
+. Envoyez une requête ping à un hôte
+. Restaurez les paramètres par défaut
+
+
+
+
+ a| 
+Support et diagnostics
+ a| 
+. Accéder au shell de diagnostic
+. Activer l'accès aux diagnostics à distance
+. Fournir les informations d'identification vCenter pour la sauvegarde
+. Effectuer des sauvegardes
+
+
+|===

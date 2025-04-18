@@ -1,0 +1,67 @@
+---
+permalink: protect/configure-protection-groups.html 
+sidebar: sidebar 
+keywords:  
+summary: Vous devez créer des groupes de protection pour protéger un groupe de machines virtuelles sur le site protégé. 
+---
+= Configuration des sites protégés et de reprise après incident
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez créer des groupes de protection pour protéger un groupe de machines virtuelles sur le site protégé.
+
+
+
+== Configuration des groupes de protection
+
+.Avant de commencer
+Vous devez vous assurer que les sites source et cible sont configurés pour les sites suivants :
+
+* La même version de VMware Live site Recovery est installée
+* Ordinateurs virtuels
+* Sites protégés et de reprise par paires
+* Les datastores source et de destination doivent être montés sur les sites respectifs
+
+
+.Étapes
+. Connectez-vous à vCenter Server, puis sélectionnez *site Recovery* > *protection Groups*.
+. Dans le volet *groupes de protection*, sélectionnez *Nouveau*.
+. Spécifiez un nom et une description pour le groupe de protection, Direction et sélectionnez *Suivant*.
+. Dans le champ *Type*, sélectionnez l'option de champ *Type...* en tant que groupes de datastores (réplication basée sur la baie) pour les datastores NFS et VMFS. Le domaine de panne n'est rien d'autre que les SVM avec la réplication activée. Les SVM qui ont uniquement mis en œuvre le peering et qui ne présentent aucun problème sont affichés.
+. Dans l'onglet Replication Groups, sélectionnez la paire de matrices activée ou les groupes de réplication sur lesquels la machine virtuelle est configurée, puis sélectionnez *Next*.
++
+Toutes les machines virtuelles du groupe de réplication sont ajoutées au groupe de protection.
+
+. Sélectionnez le plan de reprise existant ou créez un nouveau plan en sélectionnant *Ajouter au nouveau plan de reprise*.
+. Dans l'onglet prêt à terminer, vérifiez les détails du groupe de protection que vous avez créé, puis sélectionnez *Terminer*.
+
+
+
+
+== Protection par paires et sites de reprise après incident
+
+Vous devez coupler les sites protégés et de reprise créés à l'aide de votre client vSphere pour permettre à Storage Replication adapter (SRA) de détecter les systèmes de stockage.
+
+.Avant de commencer
+* VMware Live site Recovery doit être installé sur les sites protégés et de reprise.
+* SRA doit être installée sur les sites protégés et de reprise.
+
+
+.Étapes
+. Double-cliquez sur *site Recovery* sur la page d'accueil du client vSphere et sélectionnez *sites*.
+. Sélectionnez *objets* > *actions* > *associer sites*.
+. Dans la boîte de dialogue *pair site Recovery Manager Servers*, entrez l'adresse du Platform Services Controller du site protégé, puis sélectionnez *Next*.
+. Dans la section Select vCenter Server, procédez comme suit :
++
+.. Vérifiez que le serveur vCenter du site protégé apparaît comme candidat correspondant au couplage.
+.. Entrez les informations d'identification d'administration SSO, puis sélectionnez *Terminer*.
+
+
+. Si vous y êtes invité, sélectionnez *Oui* pour accepter les certificats de sécurité.
+
+
+.Résultat
+Les sites protégés et de restauration s'affichent dans la boîte de dialogue objets.

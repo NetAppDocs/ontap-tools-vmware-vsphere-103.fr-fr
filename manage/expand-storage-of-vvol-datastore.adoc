@@ -1,0 +1,25 @@
+---
+permalink: manage/expand-storage-of-vvol-datastore.html 
+sidebar: sidebar 
+keywords: virtual volume datastores 
+summary: 'Lorsque vous cliquez avec le bouton droit de la souris sur l"objet datastore dans la vue d"objet vCenter, les actions prises en charge par les outils ONTAP pour VMware vSphere s"affichent sous la section du plug-in.' 
+---
+= Développez le datastore vVols
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous cliquez avec le bouton droit de la souris sur l'objet datastore dans la vue d'objet vCenter, les actions prises en charge par les outils ONTAP pour VMware vSphere s'affichent sous la section du plug-in. Les actions spécifiques sont activées en fonction du type de datastore et des privilèges utilisateur actuels.
+
+
+NOTE: L'opération étendre le datastore vVols ne s'applique pas au datastore vVols basé sur ASA r2.
+
+.Étapes
+. Sur la page d'accueil de vSphere client, sélectionnez *hosts and clusters*.
+. Dans le volet de navigation, sélectionnez le centre de données qui contient le datastore.
+. Cliquez avec le bouton droit de la souris sur le datastore et sélectionnez *NetApp ONTAP Tools* > *Add Storage to datastore*.
+. Dans la fenêtre *create ou Select volumes*, vous pouvez créer de nouveaux volumes ou choisir parmi les volumes existants. L'interface utilisateur est intuitive. Suivez les instructions de votre choix.
+. Dans la fenêtre *Résumé*, examinez les sélections et sélectionnez *développer*. Vous pouvez suivre la progression dans le panneau tâches récentes.
+

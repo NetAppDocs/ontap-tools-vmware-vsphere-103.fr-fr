@@ -1,0 +1,136 @@
+---
+permalink: deploy/pre-deploy-checks.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 'Avant de déployer les outils ONTAP pour VMware vSphere, vous devez connaître l"espace requis pour le package de déploiement ainsi que certaines exigences de base en matière de système hôte.' 
+---
+= Avant de commencer…​
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Assurez-vous que les conditions suivantes sont remplies avant de poursuivre le déploiement :
+
+|===
+| De formation | Votre statut 
+
+
+| La version vSphere, la version ONTAP et la version hôte ESXi sont compatibles avec la version des outils ONTAP. | ❏ Oui ❏ non 
+
+
+| L'environnement vCenter Server est configuré et configuré | ❏ Oui ❏ non 
+
+
+| Le cache du navigateur est supprimé | ❏ Oui ❏ non 
+
+
+| Vous disposez des informations d'identification du serveur vCenter parent | ❏ Oui ❏ non 
+
+
+| Vous disposez des informations d'identification de connexion pour l'instance vCenter Server, à laquelle les outils ONTAP pour VMware vSphere connecteront le post-déploiement pour l'enregistrement | ❏ Oui ❏ non 
+
+
+| Le nom de domaine sur lequel le certificat est émis est mappé à l'adresse IP virtuelle dans un déploiement multi-vCenter où les certificats d'autorité de certification personnalisés sont obligatoires. | ❏ Oui ❏ non 
+
+
+| Vous avez exécuté la vérification nslookup sur le nom de domaine pour vérifier si le domaine est résolu à l'adresse IP prévue. | ❏ Oui ❏ non 
+
+
+| Le certificat est créé avec le nom de domaine et l'adresse IP des outils ONTAP. | ❏ Oui ❏ non 
+
+
+| L'application des outils ONTAP et les services internes sont accessibles depuis le serveur vCenter. | ❏ Oui ❏ non 
+
+
+| Lorsque vous utilisez des SVM mutualisés, vous disposez d'une LIF de gestion de SVM sur chaque SVM. | ❏ Oui ❏ non 
+|===
+
+
+== Fiche technique de déploiement
+
+
+
+=== Pour le déploiement d'un seul nœud
+
+Utilisez la fiche suivante pour rassembler les informations requises pour le déploiement initial des outils ONTAP pour VMware vSphere : pour le déploiement initial des outils ONTAP pour VMware vSphere :
+
+|===
+| Conditions requises | Votre valeur 
+
+
+| Adresse IP de l'application ONTAP Tools |  
+
+
+| Adresse IP d'interconnexion de nœud pour la communication entre nœuds |  
+
+
+| Nom d'hôte DNS du premier nœud |  
+
+
+| Serveur DNS principal |  
+
+
+| Serveur DNS secondaire |  
+
+
+| Domaine de recherche DNS |  
+
+
+| Adresse IPv4 du nœud principal |  
+
+
+| Masque de sous-réseau de l'adresse IPv4 |  
+
+
+| Passerelle par défaut pour l'adresse IPv4 |  
+
+
+| Adresse IPv6 (facultatif) |  
+
+
+| Longueur du préfixe IPv6 (facultatif) |  
+
+
+| Passerelle pour l'adresse IPv6 (facultatif) |  
+|===
+Créez des enregistrements DNS pour toutes les adresses IP ci-dessus. Avant d'attribuer des noms d'hôte, mappez-les aux adresses IP libres sur le DNS. Toutes les adresses IP doivent se trouver sur le même VLAN sélectionné pour le déploiement.
+
+
+
+=== Pour les déploiements haute disponibilité (HA)
+
+Outre les exigences de déploiement d'un seul nœud, vous aurez besoin des informations suivantes pour les déploiements HA :
+
+|===
+
+
+| Conditions requises | Votre valeur 
+
+
+| Serveur DNS principal |  
+
+
+| Serveur DNS secondaire |  
+
+
+| Domaine de recherche DNS |  
+
+
+| Nom d'hôte DNS du second nœud |  
+
+
+| Adresse IP du second nœud |  
+
+
+| Nom d'hôte DNS du troisième nœud |  
+
+
+| Adresse IP du troisième nœud |  
+|===
+
+
+== Configuration du pare-feu réseau
+
+Ouvrez les ports requis pour les adresses IP de votre pare-feu réseau. Les outils ONTAP doivent pouvoir atteindre cette LIF sur le port 443. Reportez-vous link:../deploy/prerequisites.html["Configuration requise pour les ports"]à pour connaître les dernières mises à jour.

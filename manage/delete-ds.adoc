@@ -1,0 +1,47 @@
+---
+permalink: manage/delete-ds.html 
+sidebar: sidebar 
+keywords: vVols datastore,delete vVol 
+summary: 'L"action Supprimer le datastore supprime le datastore. Dans le cas d"un datastore NFS ou VMFS, une boîte de dialogue s"affiche avec la liste des machines virtuelles qui utilisent le datastore.' 
+---
+= Supprimer les datastores
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'action Supprimer le stockage du datastore est prise en charge sur tous les outils ONTAP pour les datastores VMware vSphere découverts ou gérés vVols du serveur vCenter. Cette action permet de supprimer des volumes du datastore vVols.
+
+L'option remove est désactivée lorsqu'il y a des vVols résidant sur un volume particulier. En plus de supprimer des volumes du datastore, vous pouvez supprimer le volume sélectionné sur le stockage ONTAP.
+
+La suppression d'une tâche de datastore des outils ONTAP pour VMware vSphere dans vCenter Server effectue les opérations suivantes :
+
+* Démonte le conteneur vVol.
+* Nettoie le groupe initiateur. Si igroup n'est pas utilisé, supprime iqn du igroup.
+* Supprime le conteneur Vvol.
+* Laisse les volumes Flex sur la baie de stockage.
+
+
+Pour supprimer un datastore NFS, VMFS ou vvol des outils ONTAP du serveur vCenter, procédez comme suit :
+
+.Étapes
+. Connectez-vous au client vSphere
+. Cliquez avec le bouton droit de la souris sur un système hôte, un cluster hôte ou un centre de données et sélectionnez *NetApp ONTAP Tools* > *Delete datastore*.
++
+
+NOTE: Vous ne pouvez pas supprimer les datastores si des machines virtuelles utilisent ce datastore. Vous devez déplacer les machines virtuelles vers un autre datastore avant de supprimer le datastore. Vous ne pouvez pas cocher la case de suppression de volume si le datastore appartient à un cluster hôte protégé.
+
++
+.. Dans le cas d'un datastore NFS ou VMFS, une boîte de dialogue s'affiche avec la liste des machines virtuelles qui utilisent le datastore.
+.. Si le datastore VMFS est créé sur des systèmes ASA r2 et s'il fait partie de la protection, vous devez annuler la protection du datastore avant de le supprimer.
+.. Dans le cas d'un datastore vVols, l'action Supprimer le datastore supprime le datastore uniquement s'il n'y a aucun vVols associé. La boîte de dialogue Supprimer le datastore permet de supprimer des volumes du cluster ONTAP.
+.. Dans le cas d'un datastore vVols basé sur des systèmes ASA r2, la case à cocher permettant de supprimer les volumes de sauvegarde n'est pas applicable.
+
+
+. Pour supprimer les volumes de sauvegarde sur le stockage ONTAP, sélectionnez *Supprimer les volumes sur le cluster ONTAP*.
++
+
+NOTE: Vous ne pouvez pas supprimer le volume sur le cluster ONTAP d'un datastore VMFS faisant partie du cluster hôte protégé.
+
+

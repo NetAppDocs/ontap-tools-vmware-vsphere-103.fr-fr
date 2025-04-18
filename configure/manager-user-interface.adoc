@@ -1,0 +1,42 @@
+---
+permalink: configure/manager-user-interface.html 
+sidebar: sidebar 
+keywords: ontap tools manager, managerui 
+summary: 'ONTAP Tools Manager offre davantage de contrôle et d"alimentation aux outils ONTAP pour les administrateurs VMware vSphere, ce qui facilite la gestion globale de l"appliance, des locataires et des systèmes back-end de stockage.' 
+---
+= Interface utilisateur du Gestionnaire d'outils ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les outils ONTAP pour VMware vSphere sont un système mutualisé capable de gérer plusieurs instances de vCenter Server. ONTAP Tools Manager offre davantage de contrôle aux outils ONTAP pour l'administrateur VMware vSphere sur les instances vCenter Server gérées et les systèmes back-end de stockage intégrés.
+
+ONTAP Tools Manager vous aide à :
+
+* Gestion des instances vCenter Server : permet d'ajouter et de gérer des instances vCenter Server aux outils ONTAP.
+* Gestion du stockage back-end : ajoutez et gérez des clusters de stockage ONTAP aux outils ONTAP pour VMware vSphere et mappez-les vers des instances vCenter Server intégrées à l'échelle mondiale.
+* Téléchargements de bundles de journaux : permet de collecter des fichiers journaux pour les outils ONTAP pour VMware vSphere.
+* Gestion des certificats : remplacez le certificat auto-signé par un certificat AC personnalisé et renouvelez ou actualisez tous les certificats du fournisseur VASA et des outils ONTAP.
+* Gestion des mots de passe : permet de réinitialiser le mot de passe de l'application OVA de l'utilisateur.
+
+
+Pour accéder au gestionnaire d'outils ONTAP, lancez `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`-le à partir du navigateur et connectez-vous à l'aide des informations d'identification d'administrateur ONTAP Tools for VMware vSphere que vous avez fournies lors du déploiement.
+
+La section Présentation du gestionnaire d'outils ONTAP vous aide à gérer la configuration des appliances, notamment la gestion des services, la montée en charge de la taille des nœuds et l'activation de la haute disponibilité. Vous pouvez également surveiller les informations globales des outils ONTAP liés au(x) nœud(s), telles que l'état, les détails du réseau et les alertes.
+
+image:../media/ontap-tools-manager-overview.png["Présentation du tableau de bord du gestionnaire d'outils ONTAP"]
+
+|===
+| *Carte* | *Description* 
+
+
+| Carte d'appareil | La carte de l'appliance indique l'état général de l'appliance ONTAP Tools. Il affiche les détails de la configuration de l'appliance et l'état des services activés. Pour plus d'informations sur l'appliance ONTAP Tools, cliquez sur le lien *Afficher les détails*. Lorsqu'un travail d'action de modification de paramètre d'appliance est en cours, le portlet de l'appliance affiche l'état et les détails du travail. 
+
+
+| Carte d'alertes | La carte alertes répertorie les alertes des outils ONTAP par type, y compris les alertes de haute disponibilité au niveau du nœud. Vous pouvez afficher la liste des alertes en sélectionnant dans le texte de comptage (hyperlien). Le lien vous dirige vers la page d'affichage des alertes filtrée en fonction du type sélectionné. 
+
+
+| Carte des nœuds des outils ONTAP | La carte des nœuds des outils ONTAP affiche la liste des nœuds avec le nom du nœud, le nom de la machine virtuelle du nœud, l'état et toutes les données relatives au réseau. Vous pouvez sélectionner sur *Afficher les détails* pour afficher les détails supplémentaires liés au nœud sélectionné. [REMARQUE] dans une configuration non HA, un seul nœud est affiché. En configuration haute disponibilité, trois nœuds sont illustrés. 
+|===

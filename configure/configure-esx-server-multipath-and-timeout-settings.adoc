@@ -1,0 +1,110 @@
+---
+permalink: configure/configure-esx-server-multipath-and-timeout-settings.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Les outils ONTAP pour VMware vSphere vérifient et définissent les paramètres de chemins d"accès multiples de l"hôte VMware ESXi et les paramètres de délai de l"adaptateur HBA qui fonctionnent le mieux avec les systèmes de stockage NetApp.' 
+---
+= Configurer les paramètres de l'hôte ESXi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La configuration des paramètres de chemins d'accès multiples et de temporisation du serveur ESXi garantit la haute disponibilité et l'intégrité des données en permettant un basculement transparent vers un chemin de stockage de sauvegarde en cas de défaillance d'un chemin principal.
+
+
+
+== Configurer les paramètres de chemins d'accès multiples et de délai d'attente du serveur ESXi
+
+Les outils ONTAP pour VMware vSphere vérifient et définissent les paramètres des chemins d'accès multiples de l'hôte ESXi ainsi que les paramètres de délai d'expiration de l'adaptateur HBA qui fonctionnent mieux avec les systèmes de stockage NetApp.
+
+*À propos de cette tâche*
+
+Selon votre configuration et la charge du système, ce processus peut prendre un certain temps. La progression de la tâche s'affiche dans le panneau tâches récentes.
+
+.Étapes
+. Sur la page d'accueil du client Web VMware vSphere, sélectionnez *hosts and clusters*.
+. Cliquez avec le bouton droit de la souris sur un hôte et sélectionnez *NetApp ONTAP Tools* > *Update host data*.
+. Sur la page des raccourcis du client Web VMware vSphere, sélectionnez *NetApp ONTAP Tools* dans la section des plug-ins.
+. Accédez à la carte *ESXi Host Compliance* dans la présentation (tableau de bord) du plug-in ONTAP Tools for VMware vSphere.
+. Sélectionnez le lien *appliquer les paramètres recommandés*.
+. Dans la fenêtre *appliquer les paramètres d'hôte recommandés*, sélectionnez les hôtes que vous souhaitez mettre à jour pour qu'ils soient conformes aux paramètres recommandés par NetApp et sélectionnez *Suivant*.
++
+
+NOTE: Vous pouvez développer l'hôte ESXi pour voir les valeurs actuelles.
+
+. Dans la page des paramètres, sélectionnez les valeurs recommandées.
+. Dans le volet récapitulatif, vérifiez les valeurs et sélectionnez *Terminer*. Vous pouvez suivre la progression dans le panneau des tâches récentes.
+
+
+
+
+== Définissez les valeurs de l'hôte ESXi
+
+À l'aide des outils ONTAP pour VMware vSphere, vous pouvez définir des délais d'expiration et d'autres valeurs sur les hôtes VMware ESXi afin de garantir des performances optimales et un basculement réussi. Les outils ONTAP pour les ensembles VMware vSphere sont basés sur des tests NetApp internes.
+
+Vous pouvez définir les valeurs suivantes sur un hôte ESXi :
+
+
+
+=== Paramètres de l'adaptateur HBA/CNA
+
+Définit les paramètres de délai d'expiration de HBA recommandés pour les systèmes de stockage NetApp.
+
+|===
+| Paramètres | Définir cette valeur sur... 
+
+
+| Disk.QFullSampleSize | 32 pour toutes les configurations. La définition de cette valeur permet d'éviter les erreurs d'E/S. 
+
+
+| Disk.QFullThreshold | 8 pour toutes les configurations. La définition de cette valeur permet d'éviter les erreurs d'E/S. 
+
+
+| Délais d'expiration de la carte HBA FC Emulex | Valeur par défaut. 
+
+
+| Délais de connexion HBA FC QLogic | Valeur par défaut. 
+|===
+
+
+=== Paramètres MPIO
+
+Les paramètres MPIO définissent les chemins de prédilection pour les systèmes de stockage NetApp. Ils déterminent quels chemins disponibles sont optimisés (par opposition aux chemins non optimisés qui traversent le câble d'interconnexion) et définissent le chemin préféré sur l'un de ces chemins.
+
+Dans les environnements hautes performances, ou lorsque vous testez les performances avec un seul datastore LUN, pensez à modifier le paramètre d'équilibrage de charge de la règle de sélection de chemin (PSP) de Round Robin (VMW_PSP_RR) du paramètre d'IOPS par défaut de 1000 à une valeur de 1.
+
+
+
+=== Paramètres NFS
+
+|===
+
+
+| Paramètre | Définir cette valeur sur... 
+
+
+| Net.TcpipeHeapSize | 32 
+
+
+| Net.TcpipeHeapMax | 1024 MO 
+
+
+| NFS.MaxVolumes | 256 
+
+
+| NFS41.MaxVolumes | 256 
+
+
+| NFS.MaxQueueDepth | 128 ou plus 
+
+
+| NFS.HeartbeatMaxFailures | 10 
+
+
+| NFS.HeartbeatFrequency | 12 
+
+
+| NFS.HeartbeatTimeout | 5 
+|===

@@ -1,0 +1,161 @@
+---
+permalink: upgrade/upgrade-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 'Cette page présente les codes d"erreur relatifs à l"opération de mise à niveau des outils ONTAP pour le système VMware vSphere.' 
+---
+= Codes d'erreur de mise à niveau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Des codes d'erreur peuvent s'afficher lors de la mise à niveau des outils ONTAP pour VMware vSphere. Les codes d'erreur sont composés de cinq chiffres, les deux premiers chiffres représentant le script qui a rencontré le problème, et les trois derniers chiffres représentent le flux de travail spécifique de ce script.
+
+Tous les journaux d'erreurs sont enregistrés dans le fichier ansible-perl-errors.log pour faciliter le suivi et la résolution des problèmes. Ce fichier journal contient le code d'erreur et la tâche Ansible qui a échoué.
+
+
+NOTE: Les codes d'erreur fournis sur cette page sont fournis à titre de référence uniquement. Contactez l'équipe d'assistance si l'erreur persiste ou si aucune résolution n'est mentionnée.
+
+Le tableau suivant répertorie les codes d'erreur et les noms de fichier correspondants.
+
+|===
+
+
+| *Code d'erreur* | *Nom du script* 
+
+
+| 00 | firstboot-network-config.pl, mode deploy 
+
+
+| 01 | firstboot-network-config.pl, mise à niveau du mode 
+
+
+| 02 | firstboot-inputs-validation.pl 
+
+
+| 03 | firstboot-deploy-otv-ng.pl, déploiement, haute disponibilité 
+
+
+| 04 | firstboot-deploy-otv-ng.pl, déploiement, non HA 
+
+
+| 05 | firstboot-deploy-otv-ng.pl, redémarrer 
+
+
+| 06 | firstboot-deploy-otv-ng.pl, mise à niveau, haute disponibilité 
+
+
+| 07 | firstboot-deploy-otv-ng.pl, mise à niveau, non HA 
+
+
+| 08 | firstboot-otv-recovery.pl 
+
+
+| 09 | post-deploy-upgrade.pl 
+|===
+Les trois derniers chiffres du code d'erreur indiquent l'erreur de flux de travail spécifique dans le script :
+
+|===
+
+
+| *Mettre à niveau le code d'erreur* | *Workflow* | *Résolution* 
+
+
+| 068 | Échec de la restauration des paquets Debian | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 069 | Échec de la restauration des fichiers | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 070 | Échec de la suppression de la sauvegarde | - 
+
+
+| 071 | Cluster Kubernetes défectueux | - 
+
+
+| 074 | Echec du montage ISO | Vérifiez le fichier /var/log/upgrade-run.log et réessayez la mise à niveau. 
+
+
+| 075 | Échec des pré-vérifications de mise à niveau | Réessayez la mise à niveau. 
+
+
+| 076 | Échec de la mise à niveau du Registre | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 077 | Échec de la restauration du registre | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 078 | La mise à niveau de l'opérateur a échoué | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 079 | Echec du retour arrière de l'opérateur | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 080 | La mise à niveau des services a échoué | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 081 | Échec de la restauration des services | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 082 | Échec de la suppression des anciennes images du conteneur | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 083 | La suppression de la sauvegarde a échoué | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 084 | Echec de la remise en production du JobManager | Suivez les étapes ci-dessous pour récupérer/terminer la mise à niveau. 1. Activer le shell de diagnostic 2. Exécutez la commande : _sudo perl /home/maint/scripts/post-deploy-upgrade.pl --postupgrade_ 3. Vérifiez les journaux dans /var/log/post-deploy-upgrade.log 
+
+
+| 087 | Échec des étapes post-mise à niveau. | Procédez comme suit pour récupérer/terminer la mise à niveau. 1. Activer le shell de diagnostic 2. Exécutez _sudo perl /home/maint/scripts/post-deploy-upgrade.pl --postupgrade_ command 3. Vérifiez les journaux dans /var/log/post-deploy-upgrade.log 
+
+
+| 088 | La configuration de la rotation du journal pour journald a échoué | Vérifiez les paramètres réseau de la machine virtuelle compatibles avec l'hôte sur lequel la machine virtuelle est hébergée. Vous pouvez essayer de migrer la machine virtuelle vers un autre hôte et redémarrer. 
+
+
+| 089 | La modification de la propriété du fichier de configuration de rotation du journal de synthèse a échoué | Réessayez la mise à niveau. 
+
+
+| 093 | La mise à niveau du provisionnement de stockage dynamique a échoué | Réessayez la mise à niveau. 
+
+
+| 094 | Échec de la restauration du mécanisme de provisionnement du stockage dynamique | Réessayez la mise à niveau. 
+
+
+| 095 | Échec de la mise à niveau du se | Aucune récupération pour la mise à niveau du système d'exploitation. Les services d'outils ONTAP sont mis à niveau et de nouveaux pods seront en cours d'exécution. 
+
+
+| 096 | Installer le provisionneur de stockage dynamique | Consultez les journaux de mise à niveau et réessayez la mise à niveau. 
+
+
+| 097 | La désinstallation des services pour la mise à niveau a échoué | Utilisez un RPO nul ou une restauration basée sur des snapshots et réessayez la mise à niveau. 
+
+
+| 098 | échec de la copie du secret dockercred du système ntv vers l'espace de noms du mécanisme de provisionnement de stockage dynamique | Consultez les journaux de mise à niveau et réessayez la mise à niveau. 
+
+
+| 099 | Impossible de valider l'ajout de nouveau disque dur | Ajout du nouveau disque dur à tous les nœuds en cas de haute disponibilité et à un nœud en cas de déploiement non HA 
+
+
+| 108 | Echec du script d'amorçage | - 
+
+
+| 109 | la sauvegarde des données du volume persistant a échoué | Consultez les journaux de mise à niveau et réessayez la mise à niveau. 
+
+
+| 110 | échec de la restauration des données du volume persistant | Utilisez une restauration basée sur des snapshots ou un RPO nul et réessayez la mise à niveau. 
+
+
+| 111 | Échec de la mise à jour des paramètres de délai d'attente d'ETCD pour le RKE2 | Consultez les journaux de mise à niveau et réessayez la mise à niveau. 
+
+
+| 112 | La désinstallation du provisionnement de stockage dynamique a échoué | - 
+
+
+| 113 | L'actualisation des ressources sur les nœuds secondaires a échoué | Consultez les journaux de mise à niveau et réessayez la mise à niveau. 
+|===
+
+NOTE: Les outils ONTAP pour VMware vSphere 10.3 prennent en charge un RPO nul.
+
+En savoir plus sur https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/How_to_restore_ONTAP_tools_for_VMware_vSphere_if_upgrade_fails_from_version_10.0_to_10.1["Restauration des outils ONTAP pour VMware vSphere en cas d'échec de la mise à niveau de la version 10.0 vers la version 10.1"]

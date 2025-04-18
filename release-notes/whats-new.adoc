@@ -1,0 +1,64 @@
+---
+permalink: release-notes/whats-new.html 
+sidebar: sidebar 
+keywords: 'what"s new, release notes, 10.3, ONTAP tools for VMware vSphere' 
+summary: Découvrez les nouvelles fonctionnalités disponibles dans les outils ONTAP pour VMware vSphere 10.3. 
+---
+= Nouveautés des outils ONTAP pour VMware vSphere 10.3
+:allow-uri-read: 
+
+
+[role="lead"]
+Découvrez les nouvelles fonctionnalités disponibles dans les outils ONTAP pour VMware vSphere 10.3.
+
+[cols="30%,70%"]
+|===
+| Mise à jour | Description 
+
+
+ a| 
+Prise en charge de nouvelles versions de plate-forme et d'applications
+ a| 
+Les outils ONTAP pour VMware vSphere 10.3 prennent désormais en charge les versions de plateforme et d'application suivantes :
+
+* ONTAP 9.16.0 et versions ultérieures
+* VMware vSphere 8.0 U3
+* VMware Live site Recovery 9.0
+
+
+
+
+ a| 
+Facilité de déploiement
+ a| 
+Vous pouvez désormais déployer les outils ONTAP pour VMware vSphere 10.3 avec une configuration minimale requise sur un cluster à un seul nœud, puis les mettre à jour vers un déploiement haute disponibilité ou à plusieurs nœuds.
+
+
+
+ a| 
+Provisionnement et configuration transparents
+ a| 
+Les outils ONTAP pour VMware vSphere 10.3 ont supprimé les dépendances associées à Trident et utilisent désormais le provisionnement de stockage dynamique pour permettre un provisionnement et une configuration transparents.
+
+
+
+ a| 
+Sécurité renforcée pour l'authentification par API REST
+ a| 
+Les outils ONTAP pour VMware vSphere 10.3 s'appuient désormais sur des certificats signés par l'autorité de certification pour les API REST et l'interface utilisateur des outils ONTAP afin d'améliorer la sécurité.
+
+
+
+ a| 
+Prise en charge des systèmes ASA r2
+ a| 
+Les outils ONTAP pour VMware vSphere 10.3 prennent en charge le provisionnement de datastores VMFS sur les systèmes ASA r2 afin de protéger les datastores VMFS avec la synchronisation active SnapMirror et SRA/VMware Live site Recovery.
+
+
+
+ a| 
+Observabilité améliorée
+ a| 
+Les outils ONTAP pour VMware vSphere 10.3 étendent la prise en charge des metrics d'observabilité pour les datastores VMFS et vVol et leurs machines virtuelles respectives.
+
+|===

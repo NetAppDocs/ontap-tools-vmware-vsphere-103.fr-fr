@@ -1,0 +1,31 @@
+---
+permalink: protect/configure-placeholder-datastores.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous devez configurer un datastore de marque de réservation pour qu"il garde un emplacement dans l"inventaire vCenter sur le site de reprise pour la machine virtuelle protégée \(VM\). Le datastore réservé n"a pas besoin d"être volumineux car les machines virtuelles de substitution sont petites et n"utilisent que quelques centaines de kilo-octets ou moins.' 
+---
+= Configurez les datastores à espace réservé
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez configurer un datastore de marque de réservation pour qu'il garde un emplacement dans l'inventaire vCenter sur le site de reprise pour la machine virtuelle protégée (VM). Le datastore réservé n'a pas besoin d'être volumineux car les machines virtuelles de substitution sont petites et n'utilisent que quelques centaines de kilo-octets ou moins.
+
+.Avant de commencer
+* Vous devez avoir connecté les sites protégés et de reprise.
+* Vous devez avoir configuré vos mappages de ressources.
+
+
+.Étapes
+. Connectez-vous à vCenter Server et sélectionnez *site Recovery* > *sites*.
+. Sélectionnez votre site protégé et sélectionnez *gérer*.
+. Sélectionnez *Placeholder datastores* > *New* dans l'onglet gérer pour créer un nouveau datastore de marque de réservation.
+. Sélectionnez le datastore approprié et sélectionnez *OK*.
++
+
+NOTE: Les datastores à espace réservé peuvent être locaux ou distants et ne doivent pas être répliqués.
+
+. Répétez les étapes 3 à 5 pour configurer un datastore de marque de réservation pour le site de reprise.
+

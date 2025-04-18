@@ -1,0 +1,42 @@
+---
+permalink: protect/map-network.html 
+sidebar: sidebar 
+keywords:  
+summary: Vous devez mapper vos réseaux sur le site protégé et le site de reprise pour permettre la communication entre eux. 
+---
+= Configurer les mappages du réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez configurer vos mappages de ressources tels que les réseaux de machines virtuelles, les hôtes ESXi et les dossiers sur les deux sites afin de pouvoir mapper chaque ressource du site protégé à la ressource appropriée sur le site de reprise.
+
+Vous devez effectuer les configurations de ressources suivantes :
+
+* Mappages de réseau
+* Mappages de dossiers
+* Mappages de ressources
+* Datastores à espace réservé
+
+
+.Avant de commencer
+Vous devez avoir connecté les sites protégés et de reprise.
+
+.Étapes
+. Connectez-vous à vCenter Server et sélectionnez *site Recovery* > *sites*.
+. Sélectionnez votre site protégé et sélectionnez *gérer*.
+. Sélectionnez *mappages réseau* > *Nouveau* dans l'onglet gérer pour créer un nouveau mappage réseau.
+. Dans l'assistant Créer un mappage réseau, procédez comme suit :
++
+.. Sélectionnez *préparer automatiquement les mappages pour les réseaux avec des noms correspondants* et sélectionnez *Suivant*.
+.. Sélectionnez les objets de centre de données requis pour les sites protégés et de récupération, puis sélectionnez *Ajouter des mappages*.
+.. Sélectionnez *Suivant* une fois les mappages créés.
+.. Sélectionnez l'objet utilisé précédemment pour créer le mappage inverse, puis sélectionnez *Terminer*.
+
+
+
+
+.Résultat
+La page Network mappings affiche les ressources du site protégé et les ressources du site de reprise. Vous pouvez suivre les mêmes étapes pour les autres réseaux de votre environnement.

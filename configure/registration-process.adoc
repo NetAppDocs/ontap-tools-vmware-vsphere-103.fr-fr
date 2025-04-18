@@ -1,0 +1,33 @@
+---
+permalink: configure/registration-process.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous pouvez enregistrer le fournisseur VASA auprès d"une instance vCenter Server à l"aide des outils ONTAP pour l"interface de plug-in à distance VMware vSphere.' 
+---
+= Enregistrez le fournisseur VASA avec une instance vCenter Server
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez enregistrer le fournisseur VASA dans une instance de serveur vCenter à l'aide des outils ONTAP pour VMware vSphere. La section Paramètres du fournisseur VASA affiche l'état d'enregistrement du fournisseur VASA pour le serveur vCenter sélectionné.
+
+.Étapes
+. Connectez-vous au client vSphere
+. Sélectionnez *raccourcis* > *Outils NetApp ONTAP* dans la section modules externes.
+. Sélectionnez *Paramètres* > *VASA Paramètres fournisseur*. L'état d'enregistrement du fournisseur VASA s'affiche comme non enregistré.
+. Sélectionnez le bouton *Register* pour enregistrer le fournisseur VASA.
+. Entrez un nom pour le fournisseur VASA et fournissez les informations d'identification de l'utilisateur de l'application VMware vSphere pour les outils ONTAP, puis sélectionnez *Register*.
+. Une fois l'enregistrement et l'actualisation de la page réussis, l'état, le nom et la version du fournisseur VASA enregistré s'affichent. Après l'enregistrement, l'action de désinscription est activée.
+
+
+*Après la fin*
+
+Vérifiez que le fournisseur VASA intégré est répertorié sous VASA Provider du client vCenter :
+
+.Étapes
+. Accédez à l'instance vCenter Server.
+. Connectez-vous avec les informations d'identification de l'administrateur.
+. Sélectionnez *fournisseurs de stockage* > *configurer*. Vérifiez que le fournisseur VASA intégré est correctement répertorié.
+

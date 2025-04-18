@@ -1,0 +1,57 @@
+---
+permalink: configure/install-nfs-vaai-plug-in.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous pouvez installer le plug-in NetApp NFS pour VMware vStorage APIs for Array Integration \(VAAI\) à l"aide des outils ONTAP pour VMware vSphere.' 
+---
+= Installez le plug-in NFS VAAI
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le plug-in NFS vStorage API for Array Integration (NFS VAAI) est un composant logiciel qui intègre les baies de stockage VMware vSphere et NFS. Installez le plug-in NFS VAAI à l'aide des outils ONTAP pour VMware vSphere afin de tirer parti des fonctionnalités avancées de votre baie de stockage NFS et de décharger certaines opérations liées au stockage des hôtes ESXi vers la baie de stockage elle-même.
+
+.Avant de commencer
+* Téléchargez le https://mysupport.netapp.com/site/products/all/details/nfsplugin-vmware-vaai/downloads-tab["Plug-in NetApp NFS pour VMware VAAI"] package d'installation.
+* Assurez-vous que vous disposez du correctif ou des versions ultérieures de l'hôte ESXi 7.0U3 et de ONTAP 9.14.1 ou versions ultérieures.
+* Monter un datastore NFS.
+* Définissez les valeurs des paramètres de l’hôte DataMover.HardwareAcceleratedMove, DataMover.HardwareAcceleratedInit et VMFS3.HardwareAcceleratedLoking sur “1”. Pour définir automatiquement ces valeurs, appliquez les paramètres recommandés de l'hôte EXSi. Reportez-vous à la link:../configure/configure-esx-server-multipath-and-timeout-settings.html["Configurer les paramètres de chemins d'accès multiples et de délai d'attente du serveur ESXi"].
+* Activez l'option vstorage sur la machine virtuelle de stockage (SVM) en utilisant la commande vserver nfs modify -vserver_name -vstorage Enabled.
+* Assurez-vous de disposer des dernières versions de correctifs de vSphere 7.0U3.
+* VSphere 8.x est pris en charge par le plug-in NetApp NFS VAAI 2.0.1 (build 16).
+
+
+.Étapes
+. Connectez-vous au client vSphere
+. Sélectionnez *raccourcis* > *Outils NetApp ONTAP* dans la section modules externes.
+. Sélectionnez *Paramètres* > *Outils NFS VAAI*.
+. Lorsque le plug-in VAAI est téléchargé sur vCenter Server, sélectionnez *Modifier* dans la section *version existante*. Si un plug-in VAAI n'est pas téléchargé sur le serveur vCenter, cliquez sur le bouton *Upload*.
+. Parcourez et sélectionnez le `.vib` fichier et sélectionnez *Télécharger* pour télécharger le fichier vers les outils ONTAP.
+. Sélectionnez *installer sur l'hôte ESXI*, sélectionnez l'hôte ESXi sur lequel vous souhaitez installer le plug-in NFS VAAI, puis sélectionnez *installer*.
++
+Seuls les hôtes ESXi éligibles pour l'installation du plug-in sont affichés. Vous pouvez surveiller la progression de l'installation dans la section tâches récentes du client Web vSphere.
+
+. Vous devez redémarrer manuellement l'hôte ESXi une fois l'installation terminée.
++
+Lorsque l'administrateur VMware redémarre l'hôte VMware ESXi, les outils ONTAP pour VMware vSphere détectent et active automatiquement le plug-in NFS VAAI.
+
+
+
+.Et la suite ?
+Après avoir installé le plug-in NFS VAAI et redémarré votre hôte ESXi, vous devez configurer les règles d'exportation NFS appropriées pour le déchargement des copies VAAI. Lors de la configuration de VAAI dans un environnement NFS, configurez les règles d'export policy en tenant compte des exigences suivantes :
+
+* Le volume ONTAP approprié doit autoriser les appels NFSv4.
+* L'utilisateur root doit rester en tant que root et NFSv4 doit être autorisé dans tous les volumes de Junction parent.
+* L'option de prise en charge VAAI doit être définie sur le serveur NFS approprié.
+
+
+Pour plus d'informations sur la procédure, reportez-vous à l' https://kb.netapp.com/on-prem/ontap/DM/VAAI/VAAI-KBs/Configure_the_correct_NFS_export_policies_for_VAAI_copy_offload["Configurez les règles d'exportation NFS appropriées pour le déchargement des copies VAAI"]article de la base de connaissances.
+
+.Informations associées
+https://docs.netapp.com/us-en/ontap/nfs-admin/support-vmware-vstorage-over-nfs-concept.html["Prise en charge de VMware vStorage over NFS"]
+
+https://docs.netapp.com/us-en/ontap/nfs-admin/enable-disable-nfsv40-task.html["Activer ou désactiver NFSv4.0"]
+
+https://docs.netapp.com/us-en/ontap/nfs-admin/ontap-support-nfsv42-concept.html#nfs-v4-2-security-labels["Prise en charge de ONTAP pour NFSv4.2"]

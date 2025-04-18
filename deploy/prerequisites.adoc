@@ -1,0 +1,200 @@
+---
+permalink: deploy/prerequisites.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 'Avant de déployer les outils ONTAP pour VMware vSphere, vous devez connaître l"espace requis pour le package de déploiement ainsi que certaines exigences de base en matière de système hôte.' 
+---
+= Conditions préalables au déploiement des outils ONTAP pour VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de déployer les outils ONTAP pour VMware vSphere, vous devez connaître l'espace requis pour le package de déploiement ainsi que certaines exigences de base en matière de système hôte.
+
+Vous pouvez utiliser les outils ONTAP pour VMware vSphere avec VMware vCenter Server Virtual Appliance (vCSA). Vous devez déployer les outils ONTAP pour VMware vSphere sur un client vSphere pris en charge qui inclut le système ESXi.
+
+
+
+== Configuration minimale requise
+
+* *Espace requis pour le package d'installation par nœud*
++
+** 15 Go pour les installations à provisionnement fin
+** 348 Go pour les installations à provisionnement lourd
+
+
+* *Exigences de dimensionnement du système hôte* la mémoire recommandée selon la taille du déploiement est comme indiqué dans le tableau ci-dessous :
+
+
+|===
+
+
+| *Type de déploiement* | *CPU* | *Mémoire (Go)* | *Espace disque (Go) thick provisionné* 
+
+
+| Non HA petit | 9 | 18 | 350 
+
+
+| Support non HA | 13 | 26 | 350 
+
+
+| HAUTE DISPONIBILITÉ faible (trois nœuds au total) | 27 | 54 | 1050 
+
+
+| Support HAUTE DISPONIBILITÉ (trois nœuds au total) | 39 | 78 | 1050 
+
+
+| HAUTE DISPONIBILITÉ ÉLEVÉE (trois nœuds au total) | 51 | 102 | 1050 
+|===
+
+
+== Exigences minimales en matière de stockage et d'applications
+
+|===
+| Stockage, hôte et applications | Configuration minimale requise pour la version 
+
+
+| ONTAP | 9.14.1, 9.15.1 et 9.16.0. FAS, ASA A-Series, ASA C-Series, AFF A-Series, AFF C-Series et ASA r2. 
+
+
+| Hôtes ESXi | ESXi 7.0.3 
+
+
+| Serveur vCenter | VCenter 7.0U3 
+
+
+| Vasa Provider | 3,0 
+
+
+| Application OVA | 10,3 
+|===
+La matrice d'interopérabilité (IMT) contient les dernières informations sur les versions prises en charge de ONTAP, de vCenter Server, d'hôtes ESXi et d'applications de plug-in.
+
+https://imt.netapp.com/matrix/imt.jsp?components=105475;&solution=1777&isHWU&src=IMT["Matrice d'interopérabilité"^]
+
+
+
+== Limites de configuration pour le déploiement des outils ONTAP pour VMware vSphere
+
+Vous pouvez utiliser le tableau suivant comme guide pour configurer les outils ONTAP pour VMware vSphere.
+
+|===
+
+
+| *Déploiement* | *Type* | *Nombre de vVols* | *Nombre d'hôtes* 
+
+
+| Non HA | Petit (S) | ~12 KO | 32 
+
+
+| Non HA | Moyen (M) | ~24 KO | 64 
+
+
+| Haute-disponibilité | Petit (S) | ~24 KO | 64 
+
+
+| Haute-disponibilité | Moyen (M) | environ 50 000 | 128 
+
+
+| Haute-disponibilité | Grand (L) | environ 100 000 | 256 [REMARQUE] le nombre d'hôtes dans le tableau indique le nombre total d'hôtes provenant de plusieurs vCenters. 
+|===
+
+
+== Outils ONTAP pour VMware vSphere - Storage Replication adapter (SRA)
+
+Le tableau suivant indique les chiffres pris en charge par instance VMware Live site Recovery à l'aide des outils ONTAP pour VMware vSphere.
+
+|===
+| *Taille du déploiement vCenter* | *Petit* | *Moyen* 
+
+
+| Nombre total de machines virtuelles configurées pour la protection à l'aide de la réplication basée sur les baies | 2000 | 5000 
+
+
+| Nombre total de groupes de protection de réplication basés sur les baies | 250 | 250 
+
+
+| Nombre total de groupes de protection par plan de reprise d'activité | 50 | 50 
+
+
+| Nombre de datastores répliqués | 255 | 255 
+
+
+| Nombre de VM | 4000 | 7000 
+|===
+Le tableau suivant indique le nombre de VMware Live site Recovery et les outils ONTAP correspondants pour la taille du déploiement de VMware vSphere.
+
+|===
+
+
+| *Nombre d'instances de VMware Live site Recovery* | *Déploiement des outils ONTAP taille* 
+
+
+| Jusqu'à 4 | Petit 
+
+
+| 4 à 8 | Moyen 
+
+
+| Plus de 8 | Grand 
+|===
+Pour plus d'informations, reportez-vous https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/overview/site-recovery-manager-system-requirements/operational-limits-of-site-recovery-manager.html["Limites opérationnelles de la restauration VMware Live site"]à .
+
+
+
+== Configuration requise pour les ports
+
+Le tableau suivant présente les ports réseau utilisés par NetApp ainsi que leurs fonctions. Assurez-vous que ces ports sont ouverts et accessibles pour faciliter le bon fonctionnement et la communication dans le système. Assurez-vous que les configurations réseau nécessaires sont en place pour permettre au trafic sur ces ports de fonctionner correctement pour les services associés. Selon vos politiques de sécurité, vous devrez peut-être configurer des pare-feu ou d'autres dispositifs de sécurité pour autoriser ce trafic au sein de votre réseau.
+
+|===
+
+
+| *Port* | *Description* 
+
+
+| 22 (TCP) | Ansible utilise ce port SSH pour la communication lors du provisionnement du cluster. Ce port est requis pour des fonctionnalités telles que la modification du mot de passe utilisateur de maintenance, les messages d'état et la mise à jour des valeurs sur les trois nœuds en cas de configuration haute disponibilité. 
+
+
+| 443 (TCP) | Il s'agit du port pass-through pour les communications entrantes du service VASA Provider. Le certificat auto-signé Vasa Provider et le certificat CA personnalisé sont hébergés sur ce port. 
+
+
+| 8443 (TCP) | Ce port héberge la documentation de l'API via swagger et l'application de l'interface utilisateur Manager. 
+
+
+| 2379 (TCP) | Il s'agit du port par défaut pour les demandes client telles que obtenir, mettre, supprimer ou surveiller les clés dans le magasin de valeurs de clé etcd. 
+
+
+| 2380 (TCP) | Il s'agit du port par défaut pour la communication serveur à serveur pour le cluster ETCD utilisé pour l'algorithme de consensus raft sur lequel etcd s'appuie pour la réplication et la cohérence des données. 
+
+
+| 7472 (TCP+UDP) | Il s'agit du port de service de metrics prometheus. 
+
+
+| 7946 (TCP+UDP) | Ce port est utilisé pour la détection du réseau de conteneurs docker. 
+
+
+| 9083 (TCP) | Ce port est un port de service utilisé en interne pour le service VASA Provider. 
+
+
+| 1162 (UDP) | Il s'agit du port SNMP trap Packets. 
+
+
+| 6443 (TCP) | Source : nœuds agents RKE2. Destination : nœuds de serveur REK2. Description : API Kubernetes 
+
+
+| 9345 (TCP) | Source : nœuds agents RKE2. Destination : nœuds de serveur REK2. Description : API superviseur REK2 
+
+
+| 8472 (TCP+UDP) | Tous les nœuds doivent pouvoir atteindre d'autres nœuds sur le port UDP 8472 lorsque Flannel VXLAN est utilisé. Source : tous les nœuds RKE2. Destination : tous les nœuds REK2. Description: Canal CNI avec VXLAN 
+
+
+| 10250 (TCP) | Source : tous les nœuds RKE2. Destination : tous les nœuds REK2. Description : mesures Kubelet 
+
+
+| 30000-32767 (TCP) | Source : tous les nœuds RKE2. Destination : tous les nœuds REK2. Description : plage de ports NodePort 
+
+
+| 123 (TCP) | Ntpd utilise ce port pour effectuer la validation du serveur ntp. 
+|===

@@ -1,0 +1,203 @@
+---
+permalink: migrate/migrate-to-latest-ontaptools.html 
+sidebar: sidebar 
+keywords: migrate 
+summary: Lors de la migration des données de stockage, les systèmes back-end sont intégrés manuellement via des API REST. Lors de la migration des données VASA Provider, les données sont exportées à partir de la base de données Derby existante et importées dans la base de données MongoDB. 
+---
+= Migrez des outils ONTAP pour VMware vSphere 9.x vers la version 10.3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lors de la migration des données de stockage, les systèmes back-end sont intégrés manuellement via des API REST. Lors de la migration des données VASA Provider, les données sont exportées de la base de données Derby existante et importées dans la base de données MongoDB.
+
+
+NOTE: Vous ne devez migrer les outils ONTAP pour la configuration de VMware vSphere 9.xx que si la configuration gère uniquement la fonctionnalité VASA Provider.
+
+
+NOTE: Après la migration des outils ONTAP pour VMware vSphere 9.x vers 10.3, les datastores vVols avec le protocole NVMe/FC ne fonctionnent pas, car les outils ONTAP 10.3 prennent uniquement en charge NVMe-of avec les datastores VMFS.
+
+*À propos de cette tâche*
+
+Vous pouvez effectuer la migration à partir des outils ONTAP pour VMware vSphere 9.12D1 et 9.13D2 vers la version 10.3.
+
+
+NOTE: Vous devez effectuer la sauvegarde OVA de votre version actuelle avant de procéder à la mise à niveau vers les versions de correctifs.
+
+
+
+== Étapes de migration courantes
+
+. Déploiement des outils OVA pour ONTAP pour VMware vSphere 10.3.
+. Ajoutez l'instance vCenter Server que vous souhaitez migrer vers les outils ONTAP pour VMware vSphere 10.3. Voir link:../configure/add-vcenter.html["Ajouter des instances vCenter Server"].
+. Intégration locale du système back-end de stockage à partir des outils ONTAP pour les API de serveur vCenter du plug-in VMware vSphere. Ajoutez du stockage en tant que stockage local délimité pour la migration.
+. Les datastores NFS et VMFS migrés depuis les outils ONTAP pour VMware vSphere 9.xx ne sont visibles dans les outils ONTAP pour VMware vSphere 10.3 qu'après le déclenchement de la procédure de détection des datastores, qui peut prendre jusqu'à 30 minutes. Vérifiez si les datastores sont visibles sur la page Présentation des outils ONTAP de la page de l'interface utilisateur du plug-in VMware vSphere.
+
+
+
+
+== Étapes de migration SRA
+
+*Avant de commencer*
+
+Avant la migration, assurez-vous que l'un des sites est protégé et que l'autre est en état de récupération.
+
+
+NOTE: Ne migrez pas si le basculement vient d'être terminé et si la protection est en attente. Terminez la re-protection, puis effectuez la migration. Une fois le test du plan de reprise terminé, nettoyez le test de restauration et démarrez la migration.
+
+. Effectuez les étapes suivantes pour supprimer les outils ONTAP pour VMware vSphere 9.xx version SRA adapter dans l'interface utilisateur de VMware Live site Recovery :
++
+.. Accédez à la page de gestion de la configuration de VMware Live site Recovery
+.. Accédez à la section *Storage Replication adapter*
+.. Sélectionnez le menu points de suspension et sélectionnez *Réinitialiser la configuration*
+.. Sélectionnez le menu points de suspension et sélectionnez *Supprimer*
++
+Effectuez ces étapes sur les sites de protection et de reprise d'activité.
+
+
+
+. Installez les outils ONTAP pour l'adaptateur VMware vSphere 10.3 SRA sur les sites de protection et de reprise en suivant la procédure décrite à la section link:../protect/configure-on-srm-appliance.html["Configurez SRA sur l'appliance VMware Live site Recovery"]
+. Sur la page de l'interface utilisateur de VMware Live site Recovery, exécutez les opérations *Discover Arrays* et *Discover Devices* et vérifiez que les périphériques s'affichent comme ils l'étaient avant la migration.
+
+
+
+
+== Étapes de migration de VASA Provider
+
+. Activez le PORT Derby 1527 sur les outils ONTAP existants pour VMware vSphere. Pour activer le port, connectez-vous à l'interface de ligne de commande avec l'utilisateur root et exécutez la commande suivante :
++
+[listing]
+----
+iptables -I INPUT 1 -p tcp --dport 1527 -j ACCEPT
+----
+. Déploiement d'OVA pour les outils ONTAP pour VMware vSphere 10.3.
+. Ajoutez l'instance vCenter Server que vous souhaitez migrer vers les outils ONTAP pour VMware vSphere 10.3. Voir link:../configure/add-vcenter.html["Ajoutez une instance de vCenter Server"].
+. Intégration locale du système back-end de stockage à partir des API de serveur vCenter du plug-in distant. Ajoutez le stockage en tant que périmètre local pour la migration.
+. Émettez l'appel d'API suivant pour migrer :
++
+[]
+====
+*Méthode HTTP et noeud final*
+
+Cet appel d'API REST utilise la méthode et le point de terminaison suivants.
+
+|===
+
+
+| *Méthode HTTP* | *Chemin* 
+
+
+| POST | /api/v1 
+|===
+*Type de traitement*
+
+Asynchrone
+
+*Exemple Curl*
+
+/api/v1/vcenters/{vcguid}/migration-jobs
+
+*Exemple d'entrée JSON* corps de demande pour la migration à partir de 9.12 et 9.13 :
+
+{ "otv_ip": "10.12.13.45", "vasa_provider_credentials": { "username": "vasauser", "password": "****" } "database_password": "****" }
+
+Corps de la demande pour une autre migration de version :
+
+{ "otv_ip": "10.12.13.45", "vasa_provider_credentials": { "username": "vasauser", "password": "****" }
+
+*Exemple de sortie JSON*
+
+Un objet de travail est renvoyé. Vous devez enregistrer l'identifiant du travail pour l'utiliser à l'étape suivante.
+
+{ "id": 123, "migration_id": "d50073ce-35b4-4c51-9d2e-4ce66f802c35", "status": "running" }
+
+====
+. Utilisez l'URI suivant pour vérifier l'état :
++
+[listing]
+----
+https://xx.xx.xx.xxx:8443/virtualization/api/jobmanager/v2/jobs/<JobID>?includeSubJobsAndTasks=true
+----
++
+Une fois le travail terminé, validez le rapport de migration. Le rapport fait partie des données du travail et peut être vu à partir de la réponse du travail.
+
+. Ajoutez les outils ONTAP pour le fournisseur de stockage VMware vSphere au serveur vCenter et link:../configure/registration-process.html["Enregistrez le fournisseur VASA avec une instance vCenter Server"].
+. Arrêtez les outils ONTAP du fournisseur de stockage VMware vSphere 9.10/9.11/9.12/9.13 le service VASA Provider depuis la console de maintenance.
++
+Ne supprimez pas VASA Provider.
+
++
+Une fois l'ancien fournisseur VASA arrêté, le serveur vCenter bascule vers les outils ONTAP pour VMware vSphere. Tous les datastores et machines virtuelles sont accessibles et servis à partir des outils ONTAP pour VMware vSphere.
+
+. Effectuez la migration des correctifs à l'aide de l'API suivante :
++
+[]
+====
+*Méthode HTTP et noeud final*
+
+Cet appel d'API REST utilise la méthode et le point de terminaison suivants.
+
+|===
+
+
+| *Méthode HTTP* | *Chemin* 
+
+
+| CORRECTIF | /api/v1 
+|===
+*Type de traitement*
+
+Asynchrone
+
+*Exemple Curl*
+
+PATCH "/api/v1/vcenters/56d373bd-4163-44f9-a872-9adabb008ca9/migration-jobs/84dr73bd-9173-65r7-w345-8ufdbb887d43
+
+*Exemple d'entrée JSON*
+
+{ "id": 123, "migration_id": "d50073ce-35b4-4c51-9d2e-4ce66f802c35", "status": "running" }
+
+*Exemple de sortie JSON*
+
+Un objet de travail est renvoyé. Vous devez enregistrer l'identifiant du travail pour l'utiliser à l'étape suivante.
+
+{ "id": 123, "migration_id": "d50073ce-35b4-4c51-9d2e-4ce66f802c35", "status": "running" }
+
+Le corps de la demande est vide pour l'opération de patch.
+
+
+NOTE: uuid est l'uuid de migration renvoyé en réponse à l'API post-migration.
+
+Une fois l'API de migration des correctifs exécutée, toutes les machines virtuelles sont conformes à la stratégie de stockage.
+
+====
++
+Une fois la migration réussie et après avoir enregistré les outils ONTAP 10.3 sur le serveur vCenter, procédez comme suit :
+
++
+** Actualisez le certificat sur tous les hôtes.
+** Attendez un certain temps avant d'effectuer des opérations de datastore (DS) et de machine virtuelle (VM). Le temps d'attente dépend du nombre d'hôtes, de DS et de VM dans la configuration. Si vous n'attendez pas, les opérations peuvent échouer par intermittence.
+
+
+
+
+*Après la fin*
+
+Après la mise à niveau, si l'état de conformité de la machine virtuelle est obsolète, réappliquez la stratégie de stockage de la machine virtuelle en procédant comme suit :
+
+. Naviguez jusqu'au datastore et sélectionnez *Summary* > *VM Storage policies*.
++
+Sous *conformité de la stratégie de stockage VM*, vous pouvez voir l'état de conformité. Il s'affiche sous la forme *dépassé*
+
+. Sélectionnez la stratégie Storage VM et la VM correspondante
+. Sélectionnez *appliquer*
++
+L'état de conformité sous *conformité de la stratégie de stockage VM* est maintenant indiqué comme conforme.
+
+
+
+*Informations connexes*
+
+link:../upgrade/upgrade-ontap-tools.html["Mise à niveau des outils ONTAP pour VMware vSphere 10.x vers la version 10.3"]
