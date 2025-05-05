@@ -384,8 +384,6 @@
   <block id="b7d863d6846eaf1689410c02279f9ea6" category="doc">Ajout d'un système back-end</block>
   <block id="442290d4045e6c10552f661da43a9706" category="paragraph">L'ajout d'un système back-end de stockage vous permet d'intégrer un cluster ONTAP.</block>
   <block id="78166ce4ccceeedfbf6aeb8682851072" category="paragraph">*À propos de cette tâche*</block>
-  <block id="0333b8e59818e95f8c3464384f005977" category="paragraph">Pour ajouter un système back-end de stockage à un cluster dont le périmètre est global dans une architecture mutualisée, ajoutez le système back-end de stockage à l'aide du gestionnaire d'outils ONTAP. Après avoir ajouté le système back-end de stockage au cluster global, vous devez associer le cluster aux locataires vCenter souhaités. Le locataire vCenter doit intégrer les machines virtuelles de stockage (SVM) souhaitées. Cela permet à un utilisateur SVM de provisionner le datastore vVols. Vous pouvez ajouter du stockage dans vCenter à l'aide de la SVM.</block>
-  <block id="91310533ef068c4c3d95d7102fd2e7da" category="paragraph">Pour ajouter un système back-end de stockage à un cluster dont le périmètre est local, ajoutez vos systèmes ONTAP directement à l'aide du plug-in ONTAP Tools sur le serveur vCenter.</block>
   <block id="da6388fdc3d2fad794be9aa033101c19" category="open-title">Utilisation du Gestionnaire d'outils ONTAP</block>
   <block id="a761d3a6a5565687c80a0d269ca343c4" category="admonition">Dans une configuration mutualisée, vous pouvez ajouter un cluster back-end de stockage globalement et un SVM localement pour utiliser les identifiants utilisateur de SVM.</block>
   <block id="af97740fd99b637615a0fe129d5fc42f" category="list-text">Lancez le Gestionnaire d'outils ONTAP à partir d'un navigateur Web :<block ref="a2fad8db83c338dbc95675bd05c70607" prefix=" " category="inline-code"></block></block>
@@ -394,7 +392,6 @@
   <block id="9cb992b5ee53404c646502db030f7c27" category="list-text">Ajoutez le back-end de stockage et fournissez l'adresse IP ou le nom de domaine complet du serveur, le nom d'utilisateur et le mot de passe.</block>
   <block id="60f27fc86b38229b1a666fd3c7b129f1" category="admonition">Les LIF de gestion d'adresses IPv4 et IPv6 sont prises en charge.</block>
   <block id="a6fd0b4332e8ac1bd18da3d605f3f558" category="open-title">À l'aide de l'interface utilisateur du client vSphere</block>
-  <block id="15d9ec0601efc7a09529f55671b2bf35" category="admonition">Lorsque vous ajoutez un back-end de stockage via l'interface utilisateur client vSphere, le datastore vVols ne prend pas en charge l'ajout direct d'un utilisateur SVM.</block>
   <block id="3c4b541b5d5310d633c23010dd81989e" category="list-text">Connectez-vous au client vSphere</block>
   <block id="3a3cf1aabccd549ecea01e8e5bd01415" category="list-text">Dans la page raccourcis, sélectionnez *NetApp ONTAP Tools* dans la section modules externes.</block>
   <block id="1371ece860fedc2eae03b50872f67242" category="list-text">Ajoutez le back-end de stockage et fournissez l'adresse IP du serveur, le nom d'utilisateur, le mot de passe et les détails du port.</block>
@@ -2164,4 +2161,6 @@
   <block id="0c72f5748e7c096b829fa8c13bdb6b7f" category="list-text">IPv4 est le composant d'adresse IP de la configuration du nœud, qui peut être utilisé pour activer le shell de diagnostic et l'accès SSH sur le nœud à des fins de débogage et de maintenance.</block>
   <block id="e10687c7d1d3c93cdb138a57d9d14bdb" category="list-text">L'adresse IP d'interconnexion de nœud est utilisée pour la communication interne.</block>
   <block id="3e691305a01d01aac8e30b75bd1d8a27" category="cell">Adresse IP d'interconnexion de nœud pour la communication interne</block>
+  <block id="7ffde475c4ea55e9fc7c8c11becbc141" category="paragraph">Dans le cas de configurations de colocation dans lesquelles vCenter agit en tant que locataire avec un SVM associé, utilisez le gestionnaire des outils ONTAP pour ajouter le cluster. Associez le système back-end de stockage au serveur vCenter pour le mapper globalement à l'instance du serveur vCenter intégré. Le locataire vCenter doit intégrer les machines virtuelles de stockage (SVM) souhaitées. Cela permet à un utilisateur SVM de provisionner le datastore vVols. Vous pouvez ajouter du stockage dans vCenter à l'aide de la SVM.</block>
+  <block id="112fa4a14bcd73096ce0a79df18e90c8" category="admonition">Lors de la configuration d'un back-end de stockage via l'interface utilisateur client vSphere, il est important de noter que le datastore vVols ne prend pas en charge l'ajout direct d'un utilisateur SVM.</block>
 </blocks>
