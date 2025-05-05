@@ -63,7 +63,7 @@ Utilisez la fiche suivante pour rassembler les informations requises pour le dé
 | Adresse IP de l'application ONTAP Tools |  
 
 
-| Adresse IP d'interconnexion de nœud pour la communication entre nœuds |  
+| Adresse IP d'interconnexion de nœud pour la communication interne |  
 
 
 | Nom d'hôte DNS du premier nœud |  
