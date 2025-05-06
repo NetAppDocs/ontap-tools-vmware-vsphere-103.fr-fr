@@ -21,6 +21,10 @@ Grâce à l'intégration à vCenter, les outils ONTAP vous permettent d'effectue
 . Ouvrez un navigateur Web et accédez à l'URL : `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
 . Connectez-vous à l'aide des outils ONTAP pour les informations d'identification d'administrateur VMware vSphere que vous avez fournies lors du déploiement.
 . Sélectionnez *vCenters* > *Add* pour intégrer les instances de vCenter Server. Indiquez l'adresse IP ou le nom d'hôte, le nom d'utilisateur, le mot de passe et les informations de port de vCenter.
++
+
+NOTE: Vous n'avez pas besoin d'un compte d'administrateur pour ajouter des instances vCenter aux outils ONTAP. Vous pouvez créer un rôle personnalisé sans le compte admin avec des autorisations limitées. Voir link:../concepts/rbac-vcenter-use.html["Utilisez vCenter Server RBAC avec les outils ONTAP pour VMware vSphere 10"] pour plus de détails.
+
 
 
 L'ajout d'une instance de serveur vCenter aux outils ONTAP déclenche automatiquement les actions suivantes :
