@@ -60,10 +60,10 @@ Utilisez la fiche suivante pour rassembler les informations requises pour le dé
 | Conditions requises | Votre valeur 
 
 
-| Adresse IP de l'application ONTAP Tools |  
+| Adresse IP de l'application ONTAP. Il s'agit de l'adresse IP permettant d'accéder à l'interface web des outils ONTAP. |  
 
 
-| Adresse IP d'interconnexion de nœud pour la communication interne |  
+| Adresse IP virtuelle des outils ONTAP pour la communication interne. Cette adresse IP est utilisée pour la communication interne dans une configuration comportant plusieurs instances des outils ONTAP. Cette adresse IP ne doit pas être identique à celle de l'application des outils ONTAP. |  
 
 
 | Nom d'hôte DNS du premier nœud |  
@@ -78,7 +78,7 @@ Utilisez la fiche suivante pour rassembler les informations requises pour le dé
 | Domaine de recherche DNS |  
 
 
-| Adresse IPv4 du nœud principal |  
+| Adresse IPv4 du premier nœud. Il s'agit d'une adresse IPv4 unique pour l'interface de gestion des nœuds sur le réseau de gestion. |  
 
 
 | Masque de sous-réseau de l'adresse IPv4 |  

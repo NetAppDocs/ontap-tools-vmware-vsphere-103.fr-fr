@@ -14,7 +14,7 @@ summary: Après avoir supprimé les outils ONTAP pour le déploiement de VMware 
 L'utilisation d'un cluster ONTAP dédié aux outils ONTAP pour le déploiement VMware crée de nombreux volumes FlexVol inutilisés. Après avoir supprimé les outils ONTAP pour VMware vSphere, vous devez supprimer les volumes FlexVol afin d'éviter tout impact sur les performances.
 
 .Étapes
-. Déterminer le type de déploiement des outils ONTAP pour VMware vSphere à partir de la machine virtuelle du nœud principal.
+. Déterminez les outils ONTAP pour le type de déploiement VMware vSphere à partir du premier nœud de machine virtuelle.
 +
 _cat /opt/netapp/meta/ansible_vars.yaml | grep -i protocole_
 

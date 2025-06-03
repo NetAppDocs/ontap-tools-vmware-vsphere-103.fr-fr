@@ -11,7 +11,7 @@ summary: 'Vous pouvez enregistrer le fournisseur VASA auprès d"une instance vCe
 
 
 [role="lead"]
-Vous pouvez enregistrer le fournisseur VASA dans une instance de serveur vCenter à l'aide des outils ONTAP pour VMware vSphere. La section Paramètres du fournisseur VASA affiche l'état d'enregistrement du fournisseur VASA pour le serveur vCenter sélectionné.
+Vous pouvez enregistrer le fournisseur VASA dans une instance de serveur vCenter à l'aide des outils ONTAP pour VMware vSphere. La section Paramètres du fournisseur VASA affiche l'état d'enregistrement du fournisseur VASA pour le serveur vCenter sélectionné. Dans un déploiement multi-vCenter, assurez-vous de disposer de certificats d’autorité de certification personnalisés pour chaque instance de vCenter Server.
 
 .Étapes
 . Connectez-vous au client vSphere
