@@ -67,6 +67,9 @@ Les paramètres MPIO définissent les chemins de prédilection pour les système
 Dans les environnements hautes performances, ou lorsque vous testez les performances avec un seul datastore LUN, pensez à modifier le paramètre d'équilibrage de charge de la règle de sélection de chemin (PSP) de Round Robin (VMW_PSP_RR) du paramètre d'IOPS par défaut de 1000 à une valeur de 1.
 
 
+NOTE: Les paramètres MPIO ne s'appliquent pas aux protocoles NVMe, NVMe/FC et NVMe/TCP.
+
+
 
 === Paramètres NFS
 

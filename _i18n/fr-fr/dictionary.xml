@@ -2164,4 +2164,5 @@
   <block id="cc2976705cd90914f7093a509084c243" category="paragraph">Lorsque vous travaillez avec plusieurs instances de vCenter Server, mettez à niveau le certificat auto-signé vers un certificat signé par une autorité de certification (CA).</block>
   <block id="15f0aef685a07d8a64ee213328fd4abf" category="list-text">Déterminez les outils ONTAP pour le type de déploiement VMware vSphere à partir du premier nœud de machine virtuelle.</block>
   <block id="843e69439f5c77bf5c54644b48190fc1" category="admonition">Pour les outils ONTAP pour le déploiement de VMware vSphere HA, vous devez modifier le mot de passe de l’utilisateur de la console de maintenance sur le premier nœud, qui est node1.</block>
+  <block id="56564ecb20e9cb45429b432b22f216f4" category="admonition">Les paramètres MPIO ne s'appliquent pas aux protocoles NVMe, NVMe/FC et NVMe/TCP.</block>
 </blocks>
