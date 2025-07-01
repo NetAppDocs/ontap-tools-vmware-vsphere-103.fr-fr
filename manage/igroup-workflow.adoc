@@ -1,0 +1,240 @@
+---
+permalink: manage/igroup-workflow.html 
+sidebar: sidebar 
+keywords:  
+summary:  
+---
+= Comprendre les groupes i et les stratégies d'exportation dans les outils ONTAP pour VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les groupes d'initiateurs (igroups) sont des tables de noms de port mondiaux (WWPN) d'hôte de protocole FC ou de noms de nœuds qualifiés d'hôte iSCSI. Vous pouvez définir des groupes initiateurs et les mapper sur des LUN pour contrôler l'accès des initiateurs aux LUN.
+
+Dans les outils ONTAP pour VMware vSphere 9.x, les igroups étaient créés et gérés selon une structure horizontale, où chaque banque de données de vCenter était associée à un seul igroup. Ce modèle limitait la flexibilité et la réutilisation des igroups sur plusieurs banques de données. Les outils ONTAP pour VMware vSphere 10.x introduisent des igroups imbriqués, où chaque banque de données de vCenter est associée à un igroup parent, tandis que chaque hôte est lié à un igroup enfant sous ce parent. Vous pouvez définir des igroups parents personnalisés avec des noms définis par l'utilisateur pour les réutiliser sur plusieurs banques de données, ce qui permet une gestion plus flexible et interconnectée des igroups. Comprendre le workflow des igroups est essentiel pour gérer efficacement les LUN et les banques de données dans les outils ONTAP pour VMware vSphere. Différents workflows génèrent des configurations d'igroups variées, comme illustré dans les exemples suivants :
+
+
+NOTE: Les noms mentionnés sont donnés à titre d'illustration uniquement et ne correspondent pas aux noms réels des igroups. Les igroups gérés par les outils ONTAP utilisent le préfixe « otv_ ». Les igroups personnalisés peuvent recevoir n'importe quel nom.
+
+|===
+
+
+| Terme | Description 
+
+
+| DS<numéro> | Datastore 
+
+
+| iqn<nombre> | IQN initiateur 
+
+
+| hôte<numéro> | Hébergeur MoRef 
+
+
+| lun<numéro> | IDENTIFIANT DE LUN 
+
+
+| <DSName>Igroup<numéro> | Groupe parent par défaut (géré par les outils ONTAP) 
+
+
+| <Host-Moref>Igroup<numéro> | Groupe d'enfants 
+
+
+| CustomIgroup<numéro> | Groupe parent personnalisé défini par l'utilisateur 
+
+
+| ClassicIgroup<numéro> | Igroup utilisé dans les versions 9.x des outils ONTAP. 
+|===
+.Exemple 1 :
+Créer une banque de données sur un seul hôte avec un seul initiateur
+
+*Workflow* : [Créer] DS1 (lun1) : host1 (iqn1)
+
+*Résultat*:
+
+* DS1Igroup :
++
+** hôte1Igroupe → (iqn1 : lun1)
+
+
+
+
+Un groupe parent (DS1Igroup) est créé sur les systèmes ONTAP pour DS1, avec un groupe enfant (host1Igroup) mappé sur lun1. Les LUN sont toujours mappés sur des groupes enfants.
+
+.Exemple 2 :
+Monter le magasin de données existant sur un hôte supplémentaire
+
+*Workflow* : [Montage] DS1 (lun1) : host2 (iqn2)
+
+*Résultat*:
+
+* DS1Igroup :
++
+** hôte1Igroupe → (iqn1 : lun1)
+** host2Igroup → (iqn2: lun1)
+
+
+
+
+Un groupe i enfant host2Igroup est créé et ajouté au groupe i parent existant DS1Igroup.
+
+.Exemple 3 :
+Démonter une banque de données d'un hôte
+
+*Workflow* : [Démonter] DS1 (lun1) : hôte1 (iqn1)
+
+*Résultat*:
+
+* DS1Igroup :
++
+** host2Igroup → (iqn2: lun1)
+
+
+
+
+Le groupe host1Igroup est supprimé de la hiérarchie. Les groupes enfants ne sont pas explicitement supprimés. La suppression se produit dans les deux cas suivants : • Si aucun LUN n'est mappé, le système ONTAP supprime le groupe enfant ; • Une tâche de nettoyage planifiée supprime les groupes enfants non mappés sans LUN. Ces scénarios s'appliquent uniquement aux groupes gérés par les outils ONTAP, et non à ceux créés sur mesure.
+
+.Exemple 4 :
+Supprimer le magasin de données
+
+*Workflow* : [Supprimer] DS1 (lun1) : host2 (iqn2)
+
+*Résultat*:
+
+* DS1Igroup :
++
+** host2Igroup → (iqn2: lun1)
+
+
+
+
+Les groupes d'applications parents et enfants sont supprimés si une autre banque de données ne réutilise pas le groupe d'applications parent. Les groupes d'applications enfants ne sont jamais explicitement supprimés.
+
+.Exemple 5 :
+Créer plusieurs banques de données sous un groupe parent personnalisé
+
+*Flux de travail*:
+
+* [Créer] DS2 (lun2) : host1 (iqn1), host2 (iqn2)
+* [Créer] DS3 (lun3) : host1 (iqn1), host3 (iqn3)
+
+
+*Résultat*:
+
+* CustomIgroup1 :
++
+** hôte1Igroup → (iqn1 : lun2, lun3)
+** host2Igroup → (iqn2: lun2)
+** host3Igroup → (iqn3: lun3)
+
+
+
+
+CustomIgroup1 est créé pour DS2 et réutilisé pour DS3. Les groupes d'applications enfants sont créés ou mis à jour sous le parent partagé, chaque groupe d'applications enfant étant mappé à ses LUN respectifs.
+
+.Exemple 6 :
+Supprimez un magasin de données sous un groupe parent personnalisé.
+
+*Workflow* : [Supprimer] DS2 (lun2) : host1 (iqn1), host2 (iqn2)
+
+*Résultat*:
+
+* CustomIgroup1 :
++
+** hôte1Igroupe → (iqn1 : lun3)
+** host3Igroup → (iqn3: lun3)
+
+
+* Même si CustomIgroup1 n'est pas réutilisé, il n'est pas supprimé.
+* Si aucun LUN n'est mappé, le système ONTAP supprime host2Igroup.
+* Le groupe hôte1 n'est pas supprimé, car il est mappé sur lun3 de DS3. Les groupes personnalisés ne sont jamais supprimés, quel que soit leur statut de réutilisation.
+
+
+.Exemple 7 :
+Développer la banque de données vVols (ajouter un volume)
+
+*Flux de travail*:
+
+Avant l'extension :
+
+[Développer] DS4 (lun4) : host4 (iqn4)
+
+* DS4Igroup : host4Igroup → (iqn4 : lun4)
+
+
+Après l'extension :
+
+[Développer] DS4 (lun4, lun5) : host4 (iqn4)
+
+* DS4Igroup : host4Igroup → (iqn4 : lun4, lun5)
+
+
+Un nouveau LUN est créé et mappé au groupe enfant existant host4Igroup.
+
+.Exemple 8 :
+Réduire le volume de la banque de données vVols (Supprimer le volume)
+
+*Flux de travail*:
+
+Avant rétrécissement :
+
+[Rétrécir] DS4 (lun4, lun5) : host4 (iqn4)
+
+* DS4Igroup : host4Igroup → (iqn4 : lun4, lun5)
+
+
+Après rétrécissement :
+
+[Rétrécir] DS4 (lun4) : host4 (iqn4)
+
+* DS4Igroup : host4Igroup → (iqn4 : lun4)
+
+
+Le LUN spécifié (lun5) est dissocié du groupe d'objets enfant. Ce groupe reste actif tant qu'il possède au moins un LUN mappé.
+
+.Exemple 9 :
+Migration des outils ONTAP 9 vers 10 (normalisation igroup)
+
+*Workflow*
+
+Les outils ONTAP pour VMware vSPhere 9.x ne prennent pas en charge les groupes d'interface hiérarchiques. Lors de la migration vers les versions 10.3 ou supérieures, les groupes d'interface doivent être normalisés dans la structure hiérarchique.
+
+Avant la migration :
+
+[Migration] DS6 (lun6, lun7) : host6 (iqn6), host7 (iqn7) → ClassicIgroup1 (iqn6 et iqn7 : lun6, lun7)
+
+La logique des outils ONTAP 9.x autorise plusieurs initiateurs par igroup sans imposer de mappage d'hôte un à un.
+
+Après la migration :
+
+[Migration] DS6 (lun6, lun7) : host6 (iqn6), host7 (iqn7) → ClassicIgroup1 : otv_ClassicIgroup1 (iqn6 et iqn7 : lun6, lun7)
+
+Pendant la migration :
+
+* Un nouveau groupe parent (ClassicIgroup1) est créé.
+* L'igroup d'origine est renommé avec le préfixe otv_ et devient un igroup enfant.
+
+
+Cela garantit le respect du modèle hiérarchique.
+
+.Sections connexes
+https://docs.netapp.com/us-en/ontap/san-admin/igroups-concept.html["À propos des igroups"]
+
+
+
+== Export-policies
+
+Les politiques d'exportation contrôlent l'accès aux banques de données NFS dans les outils ONTAP pour VMware vSphere. Elles définissent les clients autorisés à accéder aux banques de données et leurs autorisations. Les politiques d'exportation sont créées et gérées dans les systèmes ONTAP et peuvent être associées aux banques de données NFS pour renforcer le contrôle d'accès. Chaque politique d'exportation est composée de règles spécifiant les clients (adresses IP ou sous-réseaux) autorisés à accéder aux banques de données et les autorisations accordées (lecture seule ou lecture-écriture).
+
+Lorsque vous créez une banque de données NFS dans les outils ONTAP pour VMware vSphere, vous pouvez sélectionner une politique d'exportation existante ou en créer une nouvelle. Cette politique est ensuite appliquée à la banque de données, garantissant ainsi que seuls les clients autorisés y ont accès.
+
+Lorsque vous montez une banque de données NFS sur un nouvel hôte ESXi, les outils ONTAP pour VMware vSphere ajoutent l'adresse IP de l'hôte à la stratégie d'exportation existante associée à la banque de données. Cela permet au nouvel hôte d'accéder à la banque de données sans créer de nouvelle stratégie d'exportation.
+
+Lorsque vous supprimez ou démontez une banque de données NFS d'un hôte ESXi, les outils ONTAP pour VMware vSphere suppriment l'adresse IP de l'hôte de la stratégie d'exportation. Si aucun autre hôte n'utilise cette stratégie d'exportation, elle est supprimée. Lors de la suppression d'une banque de données NFS, les outils ONTAP pour VMware vSphere suppriment la stratégie d'exportation associée à cette banque de données si elle n'est pas réutilisée par d'autres banques de données. Si la stratégie d'exportation est réutilisée, elle conserve l'adresse IP de l'hôte et reste inchangée. Lors de la suppression des banques de données, la stratégie d'exportation annule l'attribution de l'adresse IP de l'hôte et attribue une stratégie d'exportation par défaut, afin que les systèmes ONTAP puissent y accéder si nécessaire.
+
+L'attribution de la stratégie d'exportation diffère selon la réutilisation entre différents magasins de données. Lorsque vous réutilisez la stratégie d'exportation, vous pouvez lui ajouter la nouvelle adresse IP de l'hôte. Lorsque vous supprimez ou démontez un magasin de données utilisant une stratégie d'exportation partagée, celle-ci n'est pas supprimée. Elle reste inchangée et l'adresse IP de l'hôte n'est pas supprimée, car elle est partagée avec les autres magasins de données. La réutilisation des stratégies d'exportation est déconseillée, car elle peut entraîner des problèmes d'accès et de latence.
+
+.Sections connexes
+https://docs.netapp.com/us-en/ontap/nfs-config/create-export-policy-task.html["Créer une export-policy"]
