@@ -14,7 +14,7 @@ summary: 'Une fois l"appliance VMware Live site Recovery déployée, vous devez 
 Une fois l'appliance VMware Live site Recovery déployée, vous devez configurer SRA sur l'appliance VMware Live site Recovery. La configuration réussie de SRA permet à l'appliance VMware Live site Recovery de communiquer avec SRA pour la gestion de la reprise après incident. Vous devez stocker les outils ONTAP pour les informations d'identification VMware vSphere (adresse IP) sur l'appliance VMware Live site Recovery pour permettre la communication entre l'appliance VMware Live site Recovery et SRA.
 
 .Avant de commencer
-Vous devez avoir téléchargé le fichier _tar.gz_ à partir de https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["Site de support NetApp"].
+Vous auriez dû télécharger le fichier _tar.gz_ depuis https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["Site de support NetApp"^].
 
 *À propos de cette tâche*
 

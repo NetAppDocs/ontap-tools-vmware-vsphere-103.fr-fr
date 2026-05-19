@@ -158,4 +158,4 @@ Les trois derniers chiffres du code d'erreur indiquent l'erreur de flux de trava
 
 NOTE: Les outils ONTAP pour VMware vSphere 10.3 prennent en charge un RPO nul.
 
-En savoir plus sur https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/How_to_restore_ONTAP_tools_for_VMware_vSphere_if_upgrade_fails_from_version_10.0_to_10.1["Restauration des outils ONTAP pour VMware vSphere en cas d'échec de la mise à niveau de la version 10.0 vers la version 10.1"]
+Apprenez-en davantage sur https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/How_to_restore_ONTAP_tools_for_VMware_vSphere_if_upgrade_fails_from_version_10.0_to_10.1["Restauration des outils ONTAP pour VMware vSphere en cas d'échec de la mise à niveau de la version 10.0 vers la version 10.1"^]

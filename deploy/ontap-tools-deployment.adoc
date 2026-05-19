@@ -37,7 +37,7 @@ Si vous ne disposez pas d'une bibliothèque de contenu, procédez comme suit pou
 
 
 
-NOTE: Pour plus d'informations, consultez https://blogs.vmware.com/vsphere/2020/01/creating-and-using-content-library.html["Création et utilisation de la bibliothèque de contenu"] le blog.
+NOTE: Pour plus d'informations, consultez le  https://blogs.vmware.com/vsphere/2020/01/creating-and-using-content-library.html["Création et utilisation de la bibliothèque de contenu"^] blog.
 
 
 NOTE: Avant de procéder au déploiement, définissez le DRS (Distributed Resource Scheduler) du cluster sur l'inventaire sur « conservateur ». Cela permet de s'assurer que les machines virtuelles ne sont pas migrées lors de l'installation.

@@ -50,7 +50,7 @@ VMware ne prend actuellement pas en charge les machines virtuelles clonées sur 
 
 Le clonage d'une machine virtuelle protégée est pris en charge.
 
-Voir https://docs.vmware.com/en/VMware-Horizon/2103/virtual-desktops/GUID-B5020738-8649-4308-A8B0-70AF80527DF6.html["Création d'une machine virtuelle pour le clonage"] pour plus de détails.
+Consultez https://docs.vmware.com/en/VMware-Horizon/2103/virtual-desktops/GUID-B5020738-8649-4308-A8B0-70AF80527DF6.html["Création d'une machine virtuelle pour le clonage"^] pour plus de détails.
 
 
 

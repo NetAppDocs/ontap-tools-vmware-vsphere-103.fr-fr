@@ -25,7 +25,7 @@ S'il s'agit d'un déploiement iSCSI, vous devez également supprimer les igroups
 +
 _Kubectl décrire les volumes persistants | grep internalName | awk -F'=' '{print $2}'_
 
-. Supprimez les machines virtuelles du serveur vCenter. Reportez-vous à la https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-virtual-machine-administration-guide-8-0/managing-virtual-machinesvsphere-vm-admin/adding-and-removing-virtual-machinesvsphere-vm-admin.html#GUID-376174FE-F936-4BE4-B8C2-48EED42F110B-en["Supprimez et réenregistrez les machines virtuelles et les modèles de machines virtuelles"].
-. Supprimez des volumes FlexVol du Gestionnaire système ONTAP. Reportez-vous à la https://docs.netapp.com/us-en/ontap/volumes/delete-flexvol-task.html["Supprime un volume FlexVol"]. Dans la commande CLI permettant de supprimer un volume, donnez le nom exact des volumes FlexVol.
-. Supprimez les igroups SAN du système de stockage ONTAP en cas de déploiement iSCSI. Reportez-vous à la https://docs.netapp.com/us-en/ontap/san-admin/manage-san-initiators-task.html["Affichez et gérez les initiateurs SAN et igroups"].
+. Supprimez les machines virtuelles du vCenter Server. Consultez  https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-virtual-machine-administration-guide-8-0/managing-virtual-machinesvsphere-vm-admin/adding-and-removing-virtual-machinesvsphere-vm-admin.html#GUID-376174FE-F936-4BE4-B8C2-48EED42F110B-en["Supprimez et réenregistrez les machines virtuelles et les modèles de machines virtuelles"^].
+. Supprimez les volumes FlexVol depuis le System Manager ONTAP. Consultez  https://docs.netapp.com/us-en/ontap/volumes/delete-flexvol-task.html["Supprime un volume FlexVol"^]. Dans la commande CLI permettant de supprimer un volume, indiquez le nom exact des volumes FlexVol.
+. Supprimez les igroups SAN du système de stockage ONTAP en cas de déploiement iSCSI. Consultez https://docs.netapp.com/us-en/ontap/san-admin/manage-san-initiators-task.html["Affichez et gérez les initiateurs SAN et igroups"^].
 

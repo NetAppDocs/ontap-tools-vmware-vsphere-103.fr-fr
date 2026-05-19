@@ -54,7 +54,7 @@ Définir une valeur élevée (par exemple : 99999)
 |===
 Vous devez également activer `StorageProvider.autoResignatureMode` l'option.
 
-Pour plus d'informations sur la modification des paramètres du fournisseur de stockage, reportez-vous à la section https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/how-do-i-protect-my-environment/advanced-srm-configuration/reconfigure-srm-settings/change-storage-provider-settings.html["Modifier les paramètres du fournisseur de stockage"].
+Consultez  https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/how-do-i-protect-my-environment/advanced-srm-configuration/reconfigure-srm-settings/change-storage-provider-settings.html["Modifier les paramètres du fournisseur de stockage"^] pour plus d'informations sur la modification des paramètres du fournisseur de stockage.
 
 
 
@@ -65,4 +65,4 @@ Lorsque vous appuyez sur une temporisation, augmentez les valeurs de `storage.co
 
 NOTE: L'intervalle de temporisation spécifié est la valeur maximale. Il n'est pas nécessaire d'attendre que le délai maximum soit atteint. La plupart des commandes se terminent dans l'intervalle maximal défini de temps d'attente.
 
-Pour modifier les paramètres du fournisseur SAN, reportez-vous à la section https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/how-do-i-protect-my-environment/advanced-srm-configuration/reconfigure-srm-settings/change-storage-settings.html["Modifier les paramètres de stockage"].
+Consultez  https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/how-do-i-protect-my-environment/advanced-srm-configuration/reconfigure-srm-settings/change-storage-settings.html["Modifier les paramètres de stockage"^] pour modifier les paramètres du fournisseur SAN.

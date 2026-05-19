@@ -25,7 +25,7 @@ Les programmes suivants doivent être installés sur le site protégé et le sit
 La documentation relative à l'installation de VMware Live site Recovery se trouve sur le site VMware.
 
 +
-https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/about-vmware-live-site-recovery-installation-and-configuration.html["À propos de VMware Live site Recovery"]
+https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/about-vmware-live-site-recovery-installation-and-configuration.html["À propos de VMware Live site Recovery"^]
 
 * SRA
 +
@@ -54,7 +54,7 @@ Les programmes suivants doivent être installés sur le site protégé et le sit
 La documentation relative à l'installation de VMware Live site Recovery est disponible sur le site VMware.
 
 +
-https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/about-vmware-live-site-recovery-installation-and-configuration.html["À propos de VMware Live site Recovery"]
+https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/about-vmware-live-site-recovery-installation-and-configuration.html["À propos de VMware Live site Recovery"^]
 
 * SRA
 +

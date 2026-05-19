@@ -220,7 +220,7 @@ Pendant la migration :
 Cela garantit le respect du modèle hiérarchique.
 
 .Sections connexes
-https://docs.netapp.com/us-en/ontap/san-admin/igroups-concept.html["À propos des igroups"]
+https://docs.netapp.com/us-en/ontap/san-admin/igroups-concept.html["À propos des igroups"^]
 
 
 
@@ -237,4 +237,4 @@ Lorsque vous supprimez ou démontez une banque de données NFS d'un hôte ESXi, 
 L'attribution de la stratégie d'exportation diffère selon la réutilisation entre différents magasins de données. Lorsque vous réutilisez la stratégie d'exportation, vous pouvez lui ajouter la nouvelle adresse IP de l'hôte. Lorsque vous supprimez ou démontez un magasin de données utilisant une stratégie d'exportation partagée, celle-ci n'est pas supprimée. Elle reste inchangée et l'adresse IP de l'hôte n'est pas supprimée, car elle est partagée avec les autres magasins de données. La réutilisation des stratégies d'exportation est déconseillée, car elle peut entraîner des problèmes d'accès et de latence.
 
 .Sections connexes
-https://docs.netapp.com/us-en/ontap/nfs-config/create-export-policy-task.html["Créer une export-policy"]
+https://docs.netapp.com/us-en/ontap/nfs-config/create-export-policy-task.html["Créer une export-policy"^]
