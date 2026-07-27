@@ -20,6 +20,7 @@ L'API REST comprend plusieurs catégories de ressources telles que les instances
 
 
 
+[[how-to-access-the-rest-api]]
 == Comment accéder à l'API REST
 
 Vous pouvez accéder aux outils ONTAP pour l'API REST VMware vSphere 10 via l'adresse IP de l'équilibreur de charge des outils ONTAP et le port. L'URL complète comprend plusieurs parties, notamment :
@@ -47,12 +48,14 @@ Cette URL peut être utilisée pour demander une liste des instances de serveur 
 
 
 
+[[http-details]]
 == Détails d'HTTP
 
 Les outils ONTAP pour l'API REST VMware vSphere 10 utilisent le protocole HTTP et les paramètres associés pour agir sur les instances et les collections de ressources. Les détails de l'implémentation HTTP sont présentés ci-dessous.
 
 
 
+[[http-methods]]
 === Méthodes HTTP
 
 Les méthodes HTTP ou verbes pris en charge par l'API REST sont présentées dans le tableau ci-dessous.
@@ -78,6 +81,7 @@ Les méthodes HTTP ou verbes pris en charge par l'API REST sont présentées dan
 |===
 
 
+[[request-and-response-headers]]
 === En-têtes de demande et de réponse
 
 Le tableau suivant récapitule les en-têtes HTTP les plus importants utilisés avec l'API REST.
@@ -97,6 +101,7 @@ Le tableau suivant récapitule les en-têtes HTTP les plus importants utilisés 
 |===
 
 
+[[http-status-codes]]
 === Codes d'état HTTP
 
 Les codes d'état HTTP utilisés par l'API REST sont décrits ci-dessous.
@@ -137,6 +142,7 @@ Les codes d'état HTTP utilisés par l'API REST sont décrits ci-dessous.
 |===
 
 
+[[authentication]]
 == Authentification
 
 L'authentification d'un client sur l'API REST s'effectue à l'aide d'un jeton d'accès. Les caractéristiques pertinentes du token et du processus d'authentification sont les suivantes :
@@ -151,6 +157,7 @@ Reportez-vous à la link:../automation/first-call.html["Votre premier appel de l
 
 
 
+[[synchronous-and-asynchronous-requests]]
 == Demandes synchrones et asynchrones
 
 La plupart des appels d'API REST s'effectuent rapidement et s'exécutent donc de manière synchrone. C'est-à-dire qu'ils renvoient un code d'état (tel que 200) après qu'une demande a été traitée. Les requêtes qui prennent plus de temps à effectuer s'exécutent de manière asynchrone à l'aide d'une tâche en arrière-plan.

@@ -17,6 +17,7 @@ Vous pouvez utiliser les outils ONTAP pour VMware vSphere avec VMware vCenter Se
 
 
 
+[[system-requirements]]
 == Configuration minimale requise
 
 * *Espace requis pour le package d'installation par nœud*
@@ -50,6 +51,7 @@ Vous pouvez utiliser les outils ONTAP pour VMware vSphere avec VMware vCenter Se
 |===
 
 
+[[minimum-storage-and-application-requirements]]
 == Exigences minimales en matière de stockage et d'applications
 
 |===
@@ -76,6 +78,7 @@ https://imt.netapp.com/matrix/imt.jsp?components=105475;&solution=1777&isHWU&src
 
 
 
+[[configuration-limits-to-deploy-ontap-tools-for-vmware-vsphere]]
 == Limites de configuration pour le déploiement des outils ONTAP pour VMware vSphere
 
 Vous pouvez utiliser le tableau suivant comme guide pour configurer les outils ONTAP pour VMware vSphere.
@@ -102,6 +105,7 @@ Vous pouvez utiliser le tableau suivant comme guide pour configurer les outils O
 |===
 
 
+[[ontap-tools-for-vmware-vsphere-storage-replication-adapter-sra]]
 == Outils ONTAP pour VMware vSphere - Storage Replication adapter (SRA)
 
 Le tableau suivant indique les chiffres pris en charge par instance VMware Live site Recovery à l'aide des outils ONTAP pour VMware vSphere.
@@ -144,6 +148,7 @@ Pour plus d'informations, consultez  https://techdocs.broadcom.com/us/en/vmware-
 
 
 
+[[port-requirements]]
 == Configuration requise pour les ports
 
 Le tableau suivant présente les ports réseau utilisés par NetApp ainsi que leurs fonctions. Assurez-vous que ces ports sont ouverts et accessibles pour faciliter le bon fonctionnement et la communication dans le système. Assurez-vous que les configurations réseau nécessaires sont en place pour permettre au trafic sur ces ports de fonctionner correctement pour les services associés. Selon vos politiques de sécurité, vous devrez peut-être configurer des pare-feu ou d'autres dispositifs de sécurité pour autoriser ce trafic au sein de votre réseau.

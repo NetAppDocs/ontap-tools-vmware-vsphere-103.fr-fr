@@ -15,6 +15,7 @@ Il existe plusieurs aspects des outils ONTAP pour l'implémentation de VMware vS
 
 
 
+[[overview-of-the-configuration-process]]
 == Présentation du processus de configuration
 
 Les outils ONTAP pour VMware vSphere 10 incluent la prise en charge de la création d'un utilisateur ONTAP avec un rôle personnalisé. Ces définitions sont fournies dans un fichier JSON que vous pouvez télécharger vers le cluster ONTAP. Vous pouvez créer l'utilisateur et adapter le rôle à vos besoins en matière d'environnement et de sécurité.
@@ -41,18 +42,21 @@ Dans le cadre de la définition du rôle, vous devez prendre plusieurs décision
 
 
 
+[[configure-the-role-using-system-manager]]
 == Configurez le rôle à l'aide de System Manager
 
 Une fois que vous avez commencé à créer un utilisateur et un rôle avec System Manager et que vous avez téléchargé le fichier JSON, vous pouvez personnaliser le rôle en fonction de votre environnement et de vos besoins.
 
 
 
+[[core-user-and-role-configuration]]
 === Configuration de l'utilisateur principal et du rôle
 
 Les définitions RBAC sont packagées sous la forme de plusieurs fonctionnalités, dont une combinaison de VSC, VASA Provider et SRA. Vous devez sélectionner l'environnement ou les environnements dans lesquels vous avez besoin de la prise en charge de RBAC. Par exemple, si vous souhaitez que les rôles prennent en charge la fonctionnalité de plug-in à distance, sélectionnez VSC. Vous devez également choisir le nom d'utilisateur et le mot de passe associé.
 
 
 
+[[privileges]]
 === Privilèges
 
 Les Privileges de rôle sont organisés en quatre ensembles en fonction du niveau d'accès requis au stockage ONTAP. Le Privileges sur lequel sont basés les rôles comprend :
@@ -77,6 +81,7 @@ Vous pouvez ainsi détruire le stockage. Elle inclut également toutes les Privi
 
 
 
+[[generate-the-user-with-a-role]]
 === Générer l'utilisateur avec un rôle
 
 Après avoir sélectionné les options de configuration pour votre environnement, cliquez sur *Ajouter* et ONTAP crée l'utilisateur et le rôle. Le nom du rôle généré est une concaténation des valeurs suivantes :

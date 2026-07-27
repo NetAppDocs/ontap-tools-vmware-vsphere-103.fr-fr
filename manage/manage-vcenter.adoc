@@ -15,6 +15,7 @@ Les instances vCenter Server sont des plateformes de gestion centralisée qui vo
 
 
 
+[[dissociate-storage-backends-with-the-vcenter-server-instance]]
 == Dissociez les systèmes back-end de stockage de l'instance vCenter Server
 
 La page de liste vCenter Server affiche le nombre de systèmes back-end de stockage associés. Chaque instance de vCenter Server peut être associée ou dissociée à un système back-end de stockage.
@@ -29,6 +30,7 @@ La page de liste vCenter Server affiche le nombre de systèmes back-end de stock
 
 
 
+[[modify-a-vcenter-server-instance]]
 == Modifier une instance de vCenter Server
 
 Suivez les étapes ci-dessous pour modifier des instances de vCenter Server.
@@ -42,6 +44,7 @@ Suivez les étapes ci-dessous pour modifier des instances de vCenter Server.
 
 
 
+[[remove-a-vcenter-server-instance]]
 == Supprimer une instance de vCenter Server
 
 Vous devez supprimer tous les systèmes back-end associés au serveur vCenter avant de le supprimer.

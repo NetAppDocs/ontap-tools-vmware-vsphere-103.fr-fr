@@ -15,6 +15,7 @@ Les systèmes back-end de stockage sont des systèmes que les hôtes ESXi utilis
 
 
 
+[[discover-storage]]
 == Découverte du stockage
 
 Vous pouvez exécuter la détection d'un système back-end de stockage à la demande sans attendre une découverte planifiée pour mettre à jour les détails du stockage.
@@ -32,6 +33,7 @@ Vous pouvez suivre la progression dans le panneau tâches récentes.
 
 
 
+[[modify-storage-backends]]
 == Modification des systèmes back-end de stockage
 
 Suivez les étapes de cette section pour modifier un système back-end de stockage.
@@ -54,6 +56,7 @@ Vous pouvez effectuer l'opération Modifier pour les clusters ONTAP globaux à l
 
 
 
+[[remove-storage-backends]]
 == Suppression des systèmes back-end
 
 Vous devez supprimer tous les datastores connectés au système back-end de stockage avant de supprimer le système back-end. Suivez les étapes ci-dessous pour supprimer un système back-end de stockage.
@@ -75,6 +78,7 @@ Vous pouvez effectuer l'opération de suppression pour les clusters ONTAP globau
 
 
 
+[[drill-down-view-of-storage-backend]]
 == Vue détaillée du système back-end de stockage
 
 La page back-end de stockage répertorie tous les systèmes back-end. Vous pouvez détecter le stockage, modifier et supprimer les opérations sur les systèmes back-end que vous avez ajoutés, et non sur la SVM enfant individuelle sous le cluster.

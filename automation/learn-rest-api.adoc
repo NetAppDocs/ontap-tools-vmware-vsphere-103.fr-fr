@@ -18,6 +18,7 @@ Les outils ONTAP pour VMware vSphere 10 sont un ensemble d'outils destinés à l
 
 
 
+[[rest-web-services-foundation]]
 == Base de services Web REST
 
 Representational State Transfer (REST) est un style permettant de créer des applications Web distribuées, y compris la conception d'API de services Web. Il établit un ensemble de technologies permettant d'exposer les ressources basées sur les serveurs et de gérer leur état.
@@ -45,6 +46,7 @@ Les outils ONTAP pour l'API REST VMware vSphere 10 effectuent la plupart des req
 
 
 
+[[ontap-tools-manager-environment]]
 == Environnement ONTAP Tools Manager
 
 L'environnement ONTAP Tools Manager comporte plusieurs aspects à prendre en compte.

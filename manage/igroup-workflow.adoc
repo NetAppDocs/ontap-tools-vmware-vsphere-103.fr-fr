@@ -224,6 +224,7 @@ https://docs.netapp.com/us-en/ontap/san-admin/igroups-concept.html["À propos de
 
 
 
+[[export-policies]]
 == Export-policies
 
 Les politiques d'exportation contrôlent l'accès aux banques de données NFS dans les outils ONTAP pour VMware vSphere. Elles définissent les clients autorisés à accéder aux banques de données et leurs autorisations. Les politiques d'exportation sont créées et gérées dans les systèmes ONTAP et peuvent être associées aux banques de données NFS pour renforcer le contrôle d'accès. Chaque politique d'exportation est composée de règles spécifiant les clients (adresses IP ou sous-réseaux) autorisés à accéder aux banques de données et les autorisations accordées (lecture seule ou lecture-écriture).

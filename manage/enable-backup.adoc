@@ -15,6 +15,7 @@ summary: Étant donné que les outils ONTAP pour VMware vSphere 10.3 utilisent l
 
 
 
+[[create-backup-and-download-the-backup-file]]
 == Créez une sauvegarde et téléchargez le fichier de sauvegarde
 
 .Étapes
@@ -38,6 +39,7 @@ Dans la section fichier, vous pouvez voir le répertoire. Le nom du répertoire 
 
 
 
+[[recover]]
 == Reprise après incident
 
 Pour restaurer la configuration, mettez la machine virtuelle existante hors tension et déployez une nouvelle machine virtuelle à l'aide de l'OVA qui a été utilisée lors du déploiement initial.

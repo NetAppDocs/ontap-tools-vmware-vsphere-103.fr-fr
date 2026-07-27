@@ -17,7 +17,7 @@ La désinstallation des outils ONTAP pour VMware vSphere supprime toutes les don
 . Supprimez ou déplacez toutes les machines virtuelles des outils ONTAP pour les datastores gérés VMware vSphere.
 +
 ** Pour supprimer les machines virtuelles, reportez-vous à https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-virtual-machine-administration-guide-8-0/managing-virtual-machinesvsphere-vm-admin/adding-and-removing-virtual-machinesvsphere-vm-admin.html#GUID-376174FE-F936-4BE4-B8C2-48EED42F110B-en["Supprimez et réenregistrez les machines virtuelles et les modèles de machines virtuelles"^]
-** Pour les déplacer vers un datastore non géré, reportez-vous à https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/migrate-a-virtual-machine-with-storage-vmotion.html["Stockage vMotion"^]
+** Pour les déplacer vers un datastore non géré, reportez-vous à https://techdocs.broadcom.com/["Broadcom Documentation technique"^].
 
 
 . link:../manage/delete-ds.html["Supprimer les datastores"] Créé sur les outils ONTAP pour VMware vSphere.

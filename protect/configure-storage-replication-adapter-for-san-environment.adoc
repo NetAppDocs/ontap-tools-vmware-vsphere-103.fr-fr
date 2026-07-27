@@ -15,6 +15,7 @@ Vous devez configurer les systèmes de stockage avant d'exécuter Storage Replic
 
 
 
+[[configure-sra-for-san-environments]]
 == Configurez SRA pour les environnements SAN
 
 .Avant de commencer
@@ -44,6 +45,7 @@ Vous pouvez le faire en vérifiant que les hôtes ESXi disposent de LUN locales 
 
 
 
+[[configure-sra-for-nas-environments]]
 == Configurez SRA pour les environnements NAS
 
 .Avant de commencer

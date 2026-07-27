@@ -48,10 +48,12 @@ Assurez-vous que les conditions suivantes sont remplies avant de poursuivre le d
 |===
 
 
+[[deployment-worksheet]]
 == Fiche technique de déploiement
 
 
 
+[[for-single-node-deployment]]
 === Pour le déploiement d'un seul nœud
 
 Utilisez la fiche suivante pour rassembler les informations requises pour le déploiement initial des outils ONTAP pour VMware vSphere : pour le déploiement initial des outils ONTAP pour VMware vSphere :
@@ -99,6 +101,7 @@ Créez des enregistrements DNS pour toutes les adresses IP ci-dessus. Avant d'at
 
 
 
+[[for-high-availability-ha-deployment]]
 === Pour les déploiements haute disponibilité (HA)
 
 Outre les exigences de déploiement d'un seul nœud, vous aurez besoin des informations suivantes pour les déploiements HA :
@@ -131,6 +134,7 @@ Outre les exigences de déploiement d'un seul nœud, vous aurez besoin des infor
 |===
 
 
+[[network-firewall-configuration]]
 == Configuration du pare-feu réseau
 
 Ouvrez les ports requis pour les adresses IP de votre pare-feu réseau. Les outils ONTAP doivent pouvoir atteindre cette LIF sur le port 443. Reportez-vous link:../deploy/prerequisites.html["Configuration requise pour les ports"]à pour connaître les dernières mises à jour.

@@ -15,6 +15,7 @@ Vous devez configurer les intervalles de délai d'expiration du stockage conform
 
 
 
+[[storage-provider-settings]]
 == Paramètres du fournisseur de stockage
 
 Vous devez définir les valeurs de temporisation suivantes sur VMware Live site Recovery pour un environnement évolutif :
@@ -58,6 +59,7 @@ Consultez  https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-sit
 
 
 
+[[storage-settings]]
 == Paramètres de stockage
 
 Lorsque vous appuyez sur une temporisation, augmentez les valeurs de `storage.commandTimeout` et `storage.maxConcurrentCommandCnt` à une valeur supérieure.

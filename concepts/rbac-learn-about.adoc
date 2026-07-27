@@ -20,6 +20,7 @@ Le modèle standard RBAC se compose de plusieurs technologies d'implémentation 
 
 
 
+[[rbac-components]]
 == Composants RBAC
 
 À un niveau élevé, plusieurs composants sont généralement inclus dans chaque implémentation de RBAC. Ces composants sont liés de différentes manières dans le cadre de la définition des processus d'autorisation.
@@ -41,6 +42,7 @@ Une _permission_ est une définition qui lie un utilisateur ou un groupe avec un
 
 
 
+[[two-rbac-environments]]
 == Deux environnements RBAC
 
 Il existe deux environnements RBAC distincts que vous devez prendre en compte lorsque vous utilisez les outils ONTAP pour VMware vSphere 10.
